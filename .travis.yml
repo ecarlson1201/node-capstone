@@ -1,2 +1,9 @@
 language: node_js
 node_js: node
+deploy:
+  provider: heroku
+  api_key:
+    secure: o/ZsDJDtWtvXpZBoRj1wpg4i7gGBoZvnzu8fN40BVN8I+0q3cW3S79VDVYyNHHVbYKnFJFi9M5UpYX0LN/vIRNAFKCZ4XaQ1ZADpl9dLWmaEwanpRKb20cyIO8Oo2+x77S/LHcmrMTrS7OHuzXpKm4z5IjWr8VRV3YI5Do5rfQzI3FR9enOQDs2VcEoUYKx1v57KqlI8Si+W6m/oKbQWIOUdMNdjs0KKCCxRPxREBmH+YVQaoRlYaXm4hOJvr8CC5Ne1AKzfa3oqZip3pV3psOczVv6m+eei2kDvTGSRqfNLBSD+fWsRKP/IiDHO/6hHROEAM/mFXHOzVl8+FYztkD9WtK9Ny92KNTy6BC6CTZUJJIiQD2mwDDZtXosG2lhZDYdolHIsaHwaJ1X+KGJ8YUKO1v1Y8gZVB9okklChCzoQBfwdMJxOtWWMgxEllEWxwUZLyqBD3zSHPwwzlG0AeRLgz0/KtD2+Em7vuqmt/4xerCy/pJrOXkNdUQ15GdRqLzKU0SfbZbifb/7md8vT/qIZ0QmiCPBmpqHIlCcDihtDLXS05mICGDwAP6yfKP/GO/XpXZNI0q4Zd4MuYMMr+WWd4o91pvD8ioKbZJHaQ4qtF19naf8X3WTaPhL3Pi9or0FlJvEeyQY7vWriTDfauG8VqM0TKxSeD4jbOAZs69o=
+  app: aqueous-forest-46907
+  on:
+    repo: ecarlson1201/node-capstone
