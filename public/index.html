@@ -1,1 +1,46 @@
-hello world
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>Time Saver</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+</head>
+
+<body>
+    <nav>
+        <button>Login</button>
+        <button onclick="addEntry()" id="addButton">Add Entry</button>
+        <button onclick="editSchedule()" id="editButton">Edit Schedule</button>
+    </nav>
+
+        <h3>Monday</h3>
+        <ul class="day-js" id="Monday"></ul>
+
+        <h3>Tuesday</h3>
+        <ul class="day-js" id="Tuesday"></ul>
+        
+        <h3>Wednesday</h3>
+        <ul  class="day-js"id="Wednesday"></ul>
+
+        <h3>Thursday</h3>
+        <ul class="day-js" id="Thursday"></ul>
+
+        <h3>Friday</h3>
+        <ul class="day-js" id="Friday"></ul>
+
+        <h3>Saturday</h3>
+        <ul class="day-js" id="Saturday"></ul>
+        
+        <h3>Sunday</h3>
+        <ul class="day-js" id="Sunday"></ul>
+
+    <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="buttons.js"></script>
+    <script src="../seed-data.js"></script>
+    <script src="main.js"></script>
+</body>
+
+</html>

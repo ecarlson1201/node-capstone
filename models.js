@@ -3,12 +3,12 @@
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise
 
-const userSchema = new mongoose.schema({
+const userSchema = new mongoose.Schema({
   username: {type:String, required:true},
   password: {type:String, required:true}
 });
 
-const timeEntrySchema = new mongoose.schema({
+const timeEntrySchema = new mongoose.Schema({
   startTime: {type:Date, required:true},
   endTime: {type:Date, required:true},
   title: {type:String, required:true},
@@ -19,7 +19,7 @@ const timeEntrySchema = new mongoose.schema({
   reoccuring: {type:Boolean, default:false}
 });
 
-const categorySchema = new mongoose.schema({
+const categorySchema = new mongoose.Schema({
   name: {type:String, required:true},
   level: {type:Number, required:true}
 });
