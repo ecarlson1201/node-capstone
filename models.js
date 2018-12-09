@@ -15,7 +15,6 @@ const timeEntrySchema = new mongoose.Schema({
   category: {type:mongoose.Schema.Types.ObjectId, ref:'Category', required:true},
   description: {type:String},
   completed: {type:Boolean, default:false},
-  days: {type:[String]},
   reoccuring: {type:Boolean, default:false}
 });
 

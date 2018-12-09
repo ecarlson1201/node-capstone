@@ -3,19 +3,24 @@ function getDays() {
 
     $('h3').each(function () {
         resultArray.push($(this).text());
-    })
+    });
     return resultArray
 };
 
-function displayTimeEntries(days, data) {
+function getTimeEntries(days, key) {
     days.forEach(function (e) {
-        data.forEach(function (x) {
-            x.days.forEach(function (y) {
-                if (e === y) {
-                    $(`#${e}`).append(renderResult(x));
-                };
-            });
-        });
+        $(`#${key}`).append(renderResult(e));
+    });
+};
+
+function displayTimeEntries(daysArray, dataObj) {
+    daysArray.forEach(function (dayIndex) {
+        for (const dayKey in dataObj) {
+            let value = dataObj[dayKey];
+            if(dayIndex === dayKey){
+                getTimeEntries(value, dayKey);
+            };
+        };
     });
 };
 
