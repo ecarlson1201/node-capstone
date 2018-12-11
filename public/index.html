@@ -6,38 +6,87 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Time Saver</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./style.css" />
 </head>
 
 <body>
     <nav>
         <button>Login</button>
-        <button onclick="addEntry()" id="addButton">Add Entry</button>
-        <button onclick="editSchedule()" id="editButton">Edit Schedule</button>
+        <button onclick="displayAddEntry()" id="addButton">Add Entry</button>
+        <button onclick="displayEditSchedule()" id="editButton">Edit Schedule</button>
     </nav>
 
-        <h3>Monday</h3>
-        <ul class="day-js" id="Monday"></ul>
+    <div class="js-add-entry checked">
+        <form id="js-add-form">
+            Title: <input type="text" class="js-add-title"> <br>
+            Start Time: <input type="text" class="js-add-start"> <br>
+            End Time: <input type="text" class="js-add-end"> <br>
+            Category:
+            <select name="category" class="js-category">
+                <option type="radio" value="essential">Essential (Sleeping, Eating, etc.)</option>
+                <option type="radio" value="necessary">Necessary (Working, Exercise, etc.)</option>
+                <option type="radio" value="miscellaneous">Miscellaneous (Chores, Errands, etc.)</option>
+                <option type="radio" value="leisure">Leisure (Going out, Movies, Video games, ect.)</option>
+            </select>
+            <div> Days: <br>
+                <input class="js-day-select" name="day" value="Monday" type="checkbox">Monday <br>
+                <input class="js-day-select" name="day" value="Tuesday" type="checkbox">Tuesday <br>
+                <input class="js-day-select" name="day" value="Wednesday" type="checkbox">Wednesday <br>
+                <input class="js-day-select" name="day" value="Thursday" type="checkbox">Thursday <br>
+                <input class="js-day-select" name="day" value="Friday" type="checkbox">Friday <br>
+                <input class="js-day-select" name="day" value="Saturday" type="checkbox">Saturday <br>
+                <input class="js-day-select" name="day" value="Sunday" type="checkbox">Sunday <br>
+                <input onclick="daySelectAll()" type="button" id="js-day-select-all" value="Select All">
+            </div>
+            <input type="submit" value="Add Entry">
+            <input id="cancel-add-entry" type="reset" onclick="cancelAddEntry()" value="Cancel">
+        </form>
+    </div>
 
-        <h3>Tuesday</h3>
-        <ul class="day-js" id="Tuesday"></ul>
-        
-        <h3>Wednesday</h3>
-        <ul  class="day-js"id="Wednesday"></ul>
+    <form class="js-update-entry checked">
+        Title: <input type="text" class="js-update-title"> <br>
+        Start Time: <input type="text" class="js-update-start"> <br>
+        End Time: <input type="text" class="js-update-end"> <br>
+        Category:
+        <select name="category" class="js-category">
+            <option type="radio" value="essential">Essential (Sleeping, Eating, etc.)</option>
+            <option type="radio" value="necessary">Necessary (Working, Exercise, etc.)</option>
+            <option type="radio" value="miscellaneous">Miscellaneous (Chores, Errands, etc.)</option>
+            <option type="radio" value="leisure">Leisure (Going out, Movies, Video games, ect.)</option>
+        </select>
+        <input type="submit" value="Update Entry">
+        <input id="cancel-update-entry" type="reset" onclick="cancelUpdateEntry()" value="Cancel">
+    </form>
 
-        <h3>Thursday</h3>
-        <ul class="day-js" id="Thursday"></ul>
+    <div class="js-edit-buttons checked">
+        <button id="save-button" onclick="saveSchedule()">Save</button>
+        <button id="cancel-edit-schedule" onclick="cancelEditSchedule()">Cancel</button>
+        <button id="clear-schedule" onclick="clearSchedule()">Clear Schedule</button>
+    </div>
 
-        <h3>Friday</h3>
-        <ul class="day-js" id="Friday"></ul>
+    <h3>Monday</h3>
+    <ul class="day-js" id="Monday"></ul>
 
-        <h3>Saturday</h3>
-        <ul class="day-js" id="Saturday"></ul>
-        
-        <h3>Sunday</h3>
-        <ul class="day-js" id="Sunday"></ul>
+    <h3>Tuesday</h3>
+    <ul class="day-js" id="Tuesday"></ul>
+
+    <h3>Wednesday</h3>
+    <ul class="day-js" id="Wednesday"></ul>
+
+    <h3>Thursday</h3>
+    <ul class="day-js" id="Thursday"></ul>
+
+    <h3>Friday</h3>
+    <ul class="day-js" id="Friday"></ul>
+
+    <h3>Saturday</h3>
+    <ul class="day-js" id="Saturday"></ul>
+
+    <h3>Sunday</h3>
+    <ul class="day-js" id="Sunday"></ul>
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
+    <script src="elements.js"></script>
     <script src="buttons.js"></script>
     <script src="../seed-data.js"></script>
     <script src="main.js"></script>

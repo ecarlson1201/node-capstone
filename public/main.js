@@ -8,6 +8,9 @@ function getDays() {
 };
 
 function getTimeEntries(days, key) {
+    days.forEach(function(e){
+        $(`#${key}`).html("");
+    });
     days.forEach(function (e) {
         $(`#${key}`).append(renderResult(e));
     });
@@ -27,8 +30,9 @@ function displayTimeEntries(daysArray, dataObj) {
 function renderResult(result) {
     return `
         <li class="time-entry">
-        ${result.title} ${result.startTime} - ${result.endTime}<br>
-        </li>
+        ${result.title} ${result.startTime} - ${result.endTime}
+        <input type="checkbox" class="js-checkbox checked">
+        </li><br>
     `;
 };
 
