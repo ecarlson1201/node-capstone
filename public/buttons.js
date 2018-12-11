@@ -4,45 +4,6 @@ function displayAddEntry() {
     addEntrySubmit();
 };
 
-function daySelect() {
-    DAYSELECT.click(function () {
-        $(this).attr('checked', function (val) {
-            return !val;
-        });
-    });
-};
-
-function daySelectAll() {
-    DAYSELECT.attr('checked', true);
-};
-
-function displayEditSchedule() {
-    $('.js-checkbox').removeClass('checked');
-    EDIT_BUTTONS.removeClass('checked');
-};
-
-function cancelUpdateEntry() {
-    UPDATE.addClass('checked');
-};
-
-//work in progress
-function saveSchedule() {
-    $.each($("input[class='js-checkbox']:checked"), function () {
-        console.log($(this).parent().text());
-    });
-    displayTimeEntries(getDays(), MOCK_TIME_ENTRIES);
-};
-
-function clearSchedule() {
-    $('.js-checkbox').prop('checked', true);
-};
-
-function cancelEditSchedule() {
-    EDIT_BUTTONS.addClass('checked');
-    $('.js-checkbox').prop('checked', false);
-    $('.js-checkbox').addClass('checked');
-};
-
 function cancelAddEntry() {
     ADD.addClass('checked');
     DAYSELECT.attr('checked', false);
@@ -68,6 +29,45 @@ function newEntry() {
             "name": ADD_CATEGORY,
         }
     };
+};
+
+function daySelect() {
+    DAYSELECT.click(function () {
+        $(this).attr('checked', function (val) {
+            return !val;
+        });
+    });
+};
+
+function daySelectAll() {
+    DAYSELECT.attr('checked', true);
+};
+
+function displayEditSchedule() {
+    $('.js-checkbox').removeClass('checked');
+    EDIT_BUTTONS.removeClass('checked');
+};
+
+function clearSchedule() {
+    $('.js-checkbox').prop('checked', true);
+};
+
+function cancelEditSchedule() {
+    EDIT_BUTTONS.addClass('checked');
+    $('.js-checkbox').prop('checked', false);
+    $('.js-checkbox').addClass('checked');
+};
+
+//work in progress
+function saveSchedule() {
+    $.each($("input[class='js-checkbox']:checked"), function () {
+        console.log($(this).parent().text());
+    });
+    displayTimeEntries(getDays(), MOCK_TIME_ENTRIES);
+};
+
+function cancelUpdateEntry() {
+    UPDATE.addClass('checked');
 };
 
 //work in progress
