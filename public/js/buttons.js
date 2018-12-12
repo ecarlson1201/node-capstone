@@ -23,8 +23,8 @@ function addEntrySubmit() {
 function newEntry() {
     return {
         "title": ADD_TITLE.val(),
-        "startTime": ADD_START.val(),
-        "endTime": ADD_END.val(),
+        "startTime": timeConversion(ADD_START.val()),
+        "endTime": timeConversion(ADD_END.val()),
         "category": {
             "name": ADD_CATEGORY,
         }
@@ -71,6 +71,17 @@ function cancelUpdateEntry() {
 };
 
 //work in progress
-TIME_ENTRY.click(function(e){
+TIME_ENTRY.click(function (e) {
 
 });
+
+function timeConversion (time) {
+    var ts = time;
+    var H = +ts.substr(0, 2);
+    var h = (H % 12) || 12;
+    h = (h < 10)?("0"+h):h;
+    var ampm = H < 12 ? " AM" : " PM";
+    ts = h + ts.substr(2, 3) + ampm;
+    return ts;
+  };
+  

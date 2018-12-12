@@ -8,9 +8,7 @@ function getDays() {
 };
 
 function getTimeEntries(days, key) {
-    days.forEach(function(e){
-        $(`#${key}`).html("");
-    });
+    $(`#${key}`).html("");
     days.forEach(function (e) {
         $(`#${key}`).append(renderResult(e));
     });
@@ -18,12 +16,7 @@ function getTimeEntries(days, key) {
 
 function displayTimeEntries(daysArray, dataObj) {
     daysArray.forEach(function (dayIndex) {
-        for (const dayKey in dataObj) {
-            let value = dataObj[dayKey];
-            if(dayIndex === dayKey){
-                getTimeEntries(value, dayKey);
-            };
-        };
+        getTimeEntries(dataObj[dayIndex], dayIndex);
     });
 };
 

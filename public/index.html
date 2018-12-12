@@ -6,7 +6,7 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <title>Time Saver</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link rel="stylesheet" type="text/css" media="screen" href="./style.css" />
+    <link rel="stylesheet" type="text/css" media="screen" href="./css/style.css" />
 </head>
 
 <body>
@@ -18,9 +18,9 @@
 
     <div class="js-add-entry checked">
         <form id="js-add-form">
-            Title: <input type="text" class="js-add-title"> <br>
-            Start Time: <input type="time" class="js-add-start"> <br>
-            End Time: <input type="time" class="js-add-end"> <br>
+            Title: <input type="text" class="js-add-title" required> <br>
+            Start Time: <input type="time" class="js-add-start" required> <br>
+            End Time: <input type="time" class="js-add-end" required> <br>
             Category:
             <select name="category" class="js-category">
                 <option type="radio" value="essential">Essential (Sleeping, Eating, etc.)</option>
@@ -86,10 +86,10 @@
     <ul class="day-js" id="Sunday"></ul>
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
-    <script src="elements.js"></script>
-    <script src="buttons.js"></script>
-    <script src="../seed-data.js"></script>
-    <script src="main.js"></script>
+    <script src="./js/elements.js"></script>
+    <script src="./js/buttons.js"></script>
+    <script src="./js/seed-data.js"></script>
+    <script src="./js/render-display.js"></script>
 </body>
 
 </html>
