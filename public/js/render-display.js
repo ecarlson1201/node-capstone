@@ -4,6 +4,7 @@ function getDays() {
     $('h3').each(function () {
         resultArray.push($(this).text());
     });
+    
     return resultArray
 };
 

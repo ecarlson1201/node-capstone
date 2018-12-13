@@ -1,5 +1,4 @@
-const MOCK_TIME_ENTRIES = 
-  {
+{
     "user": "e.carlson",
     "data": [
         {

@@ -25,9 +25,6 @@ function newEntry() {
         "title": ADD_TITLE.val(),
         "startTime": timeConversion(ADD_START.val()),
         "endTime": timeConversion(ADD_END.val()),
-        "category": {
-            "name": ADD_CATEGORY,
-        }
     };
 };
 
