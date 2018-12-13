@@ -15,3 +15,5 @@ const DAYSELECT = $('.js-day-select');
 const CANCEL_EDIT = $('#cancel-edit-schedule');
 const EDIT_BUTTONS = $('.js-edit-buttons');
 const TIME_ENTRY = $('.time-entry');
+
+const LOGIN = $('.js-login');

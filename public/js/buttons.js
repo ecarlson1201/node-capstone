@@ -2,6 +2,7 @@ function displayAddEntry() {
     ADD.removeClass('checked');
     daySelect();
     addEntrySubmit();
+    cancelEditSchedule();
 };
 
 function cancelAddEntry() {
@@ -13,9 +14,14 @@ function addEntrySubmit() {
     ADD_FORM.submit(function (event) {
         event.preventDefault();
         $.each($("input[name='day']:checked"), function () {
-            MOCK_TIME_ENTRIES[$(this).val()].push(newEntry());
+            let that = $(this).val()
+            MOCK_TIME_ENTRIES.data.forEach(function(dayObj){
+                if(dayObj.day === that){
+                    dayObj.entries.push(newEntry());
+                };
+            });
         });
-        displayTimeEntries(getDays(), MOCK_TIME_ENTRIES);
+        getDays(MOCK_TIME_ENTRIES);
         cancelAddEntry();
     });
 };
@@ -43,6 +49,7 @@ function daySelectAll() {
 function displayEditSchedule() {
     $('.js-checkbox').removeClass('checked');
     EDIT_BUTTONS.removeClass('checked');
+    cancelAddEntry();
 };
 
 function clearSchedule() {
@@ -55,22 +62,9 @@ function cancelEditSchedule() {
     $('.js-checkbox').addClass('checked');
 };
 
-//work in progress
-function saveSchedule() {
-    $.each($("input[class='js-checkbox']:checked"), function () {
-        console.log($(this).parent().text());
-    });
-    displayTimeEntries(getDays(), MOCK_TIME_ENTRIES);
-};
-
 function cancelUpdateEntry() {
     UPDATE.addClass('checked');
 };
-
-//work in progress
-TIME_ENTRY.click(function (e) {
-
-});
 
 function timeConversion (time) {
     var ts = time;

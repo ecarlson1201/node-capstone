@@ -1,28 +1,54 @@
 "use strict";
 
+require('dotenv').config();
 const express = require('express');
 const morgan = require('morgan');
 const mongoose = require('mongoose');
+const passport = require('passport');
+const bodyParser = require('body-parser');
+
+const { router: userRouter } = require('./user/router');
+const { router: authRouter } = require('./auth/router');
+const { localStrategy, jwtStrategy } = require('./auth/strategies');
+
+
+
+const { Data, Days, TimeEntries, Category } = require('./models');
 
 mongoose.Promise = global.Promise;
 
 const { DATABASE_URL, PORT } = require('./config');
-const { Data, User, Days, TimeEntries, Category  } = require('./models')
 
 const app = express();
-app.use(morgan('common'));
-app.use(express.json());
 
-app.get('/days', (req, res) => {
-  Days
-    .find()
-    .then(data => {
-      res.json(data);
-    })
-    .catch(err => {
-      console.error(err);
-      res.status(500).json({ error: 'something went horribly wrong' });
-    });
+app.use(morgan('common'));
+
+app.use(function (req, res, next) {
+  res.header('Access-Control-Allow-Origin', '*');
+  res.header('Access-Control-Allow-Headers', 'Content-Type,Authorization');
+  res.header('Access-Control-Allow-Methods', 'GET,POST,PUT,PATCH,DELETE');
+  if (req.method === 'OPTIONS') {
+    return res.send(204);
+  }
+  next();
+});
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+app.use('/api/users/', userRouter);
+app.use('/api/auth/', authRouter);
+app.use(express.static('public'));
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
+app.get('/api/protected', jwtAuth, (req, res) => {
+  return res.json({
+    data: 'achilles'
+  });
+});
+
+app.use('*', (req, res) => {
+  return res.status(404).json({ message: 'Not Found' });
 });
 
 let server;
@@ -33,9 +59,8 @@ function runServer(database_url, port = PORT) {
       if (err) {
         return reject(err);
       }
-      app.use(express.static('public'));
       server = app.listen(port, () => {
-        console.log(`Capstone app is listening on port ${port}`);
+        console.log(`App is listening on port ${port}`);
         resolve();
       })
         .on('error', err => {

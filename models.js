@@ -8,11 +8,6 @@ const dataSchema = new mongoose.Schema({
   data: {type:mongoose.Schema.Types.ObjectId, ref:'Days'},
 });
 
-const userSchema = new mongoose.Schema({
-  username: {type:String, required:true, unique: true},
-  password: {type:String, required:true}
-});
-
 const daySchema = new mongoose.Schema({
   day: {type:String},
 });
@@ -30,9 +25,8 @@ const categorySchema = new mongoose.Schema({
 });
 
 const Data = mongoose.model('Data', dataSchema);
-const User = mongoose.model('User', userSchema);
 const Days = mongoose.model('Days', daySchema);
 const TimeEntries = mongoose.model('TimeEntry', timeEntrySchema);
 const Category = mongoose.model('Category', categorySchema);
 
-module.exports = {Data, User, Days, TimeEntries, Category};
+module.exports = {Data, Days, TimeEntries, Category};

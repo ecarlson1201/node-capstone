@@ -1,35 +1,30 @@
-function getDays() {
-    const resultArray = [];
-
-    $('h3').each(function () {
-        resultArray.push($(this).text());
-    });
-    
-    return resultArray
-};
-
-function getTimeEntries(days, key) {
-    $(`#${key}`).html("");
-    days.forEach(function (e) {
-        $(`#${key}`).append(renderResult(e));
+function getDays(dataObj) {
+    $('.js-day').html('');
+    dataObj.data.forEach(function (result) {
+        getTimeEntries(result);
     });
 };
 
-function displayTimeEntries(daysArray, dataObj) {
-    daysArray.forEach(function (dayIndex) {
-        getTimeEntries(dataObj[dayIndex], dayIndex);
-    });
+function getTimeEntries(dayObj) {
+    dayObj.entries.forEach(function (e) {
+        $(`#${dayObj.day}`).append(`${renderResult(e)}`)
+    });  
 };
 
-function renderResult(result) {
+function renderResult(entryObj) {
     return `
         <li class="time-entry">
-        ${result.title} ${result.startTime} - ${result.endTime}
+        ${entryObj.title} ${entryObj.startTime} - ${entryObj.endTime}
         <input type="checkbox" class="js-checkbox checked">
         </li><br>
     `;
 };
 
+function renderUser(dataObj) {
+    $('#js-user').append(`Welcome ${dataObj.user}`);
+};
+
 $(function () {
-    displayTimeEntries(getDays(), MOCK_TIME_ENTRIES);
+    getDays(MOCK_TIME_ENTRIES);
+    renderUser(MOCK_TIME_ENTRIES);
 });
