@@ -1,6 +1,7 @@
 function getDays(dataObj) {
     $('.js-day').html('');
-    dataObj.data.forEach(function (result) {
+    $('#js-user').append(`Welcome ${dataObj[0].user}`);
+    dataObj[0].data.forEach(function (result) {
         getTimeEntries(result);
     });
 };
@@ -20,11 +21,6 @@ function renderResult(entryObj) {
     `;
 };
 
-function renderUser(dataObj) {
-    $('#js-user').append(`Welcome ${dataObj.user}`);
-};
-
 $(function () {
-    getDays(MOCK_TIME_ENTRIES);
-    renderUser(MOCK_TIME_ENTRIES);
+    getEntriesFromApi(getDays);
 });

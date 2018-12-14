@@ -7,13 +7,11 @@ const mongoose = require('mongoose');
 const passport = require('passport');
 const bodyParser = require('body-parser');
 
+const { router: timeEntriesRouter } = require('./timeentries/router');
 const { router: userRouter } = require('./user/router');
 const { router: authRouter } = require('./auth/router');
 const { localStrategy, jwtStrategy } = require('./auth/strategies');
 
-
-
-const { Data, Days, TimeEntries, Category } = require('./models');
 
 mongoose.Promise = global.Promise;
 
@@ -36,6 +34,7 @@ app.use(function (req, res, next) {
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
+app.use('/api/time-entries', timeEntriesRouter);
 app.use('/api/users/', userRouter);
 app.use('/api/auth/', authRouter);
 app.use(express.static('public'));
@@ -43,7 +42,7 @@ app.use(express.static('public'));
 const jwtAuth = passport.authenticate('jwt', { session: false });
 app.get('/api/protected', jwtAuth, (req, res) => {
   return res.json({
-    data: 'achilles'
+    data: 'iliad'
   });
 });
 

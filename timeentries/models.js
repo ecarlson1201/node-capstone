@@ -3,6 +3,7 @@
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise
 
+
 const dataSchema = new mongoose.Schema({
   user: {type:mongoose.Schema.Types.ObjectId, ref:'User'},
   data: {type:mongoose.Schema.Types.ObjectId, ref:'Days'},
@@ -10,13 +11,14 @@ const dataSchema = new mongoose.Schema({
 
 const daySchema = new mongoose.Schema({
   day: {type:String},
+  entries: {type:mongoose.Schema.Types.ObjectId, ref:'TimeEntries'},
 });
 
 const timeEntrySchema = new mongoose.Schema({
   title: {type:String, required:true},
   startTime: {type:String, required:true},
   endTime: {type:String, required:true},
-  category: {type:mongoose.Schema.Types.ObjectId, ref:'Category'},
+  category: {type:String, required:true},
 });
 
 const categorySchema = new mongoose.Schema({
