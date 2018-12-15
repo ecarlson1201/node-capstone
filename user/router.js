@@ -1,12 +1,20 @@
 'use strict';
 const express = require('express');
 const bodyParser = require('body-parser');
+const passport = require('passport');
 
 const { User } = require('./models');
+const { router: authRouter } = require('../auth/router');
+const { localStrategy, jwtStrategy } = require('../auth/strategies')
 
 const router = express.Router();
 
 const jsonParser = bodyParser.json();
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
 router.post('/', jsonParser, (req, res) => {
   const requiredFields = ['username', 'password'];
@@ -21,7 +29,7 @@ router.post('/', jsonParser, (req, res) => {
     });
   }
 
-  const stringFields = ['username', 'password', 'firstName', 'lastName'];
+  const stringFields = ['username', 'password'];
   const nonStringField = stringFields.find(
     field => field in req.body && typeof req.body[field] !== 'string'
   );
@@ -51,22 +59,22 @@ router.post('/', jsonParser, (req, res) => {
 
   const sizedFields = {
     username: {
-      min: 5
+      min: 4
     },
     password: {
-      min: 5,
+      min: 10,
       max: 72
     }
   };
   const tooSmallField = Object.keys(sizedFields).find(
     field =>
       'min' in sizedFields[field] &&
-            req.body[field].trim().length < sizedFields[field].min
+      req.body[field].trim().length < sizedFields[field].min
   );
   const tooLargeField = Object.keys(sizedFields).find(
     field =>
       'max' in sizedFields[field] &&
-            req.body[field].trim().length > sizedFields[field].max
+      req.body[field].trim().length > sizedFields[field].max
   );
 
   if (tooSmallField || tooLargeField) {
@@ -82,11 +90,9 @@ router.post('/', jsonParser, (req, res) => {
     });
   }
 
-  let {username, password, firstName = '', lastName = ''} = req.body;
-  firstName = firstName.trim();
-  lastName = lastName.trim();
+  let { username, password } = req.body;
 
-  return User.find({username})
+  return User.find({ username })
     .count()
     .then(count => {
       if (count > 0) {
@@ -103,8 +109,6 @@ router.post('/', jsonParser, (req, res) => {
       return User.create({
         username,
         password: hash,
-        firstName,
-        lastName
       });
     })
     .then(user => {
@@ -114,14 +118,17 @@ router.post('/', jsonParser, (req, res) => {
       if (err.reason === 'ValidationError') {
         return res.status(err.code).json(err);
       }
-      res.status(500).json({code: 500, message: 'Internal server error'});
+      res.status(500).json({ code: 500, message: 'Internal server error' });
     });
 });
 
-router.get('/', (req, res) => {
-  return User.find()
-    .then(users => res.json(users.map(user => user.serialize())))
-    .catch(err => res.status(500).json({message: 'Internal server error'}));
+router.delete('/delete/:id', jwtAuth, (req, res) => {
+  User.findByIdAndDelete(req.params.id)
+    .then(user => res.status(204).end())
+    .catch(err => {
+      console.error(err);
+      res.status(500).json({ 'error': 'Internal server error.' });
+    });
 });
 
-module.exports = {router};
+module.exports = { router };

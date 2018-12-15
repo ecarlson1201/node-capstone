@@ -40,6 +40,7 @@ app.use('/api/auth/', authRouter);
 app.use(express.static('public'));
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
+
 app.get('/api/protected', jwtAuth, (req, res) => {
   return res.json({
     data: 'iliad'

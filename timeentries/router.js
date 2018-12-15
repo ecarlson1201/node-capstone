@@ -10,13 +10,13 @@ const jsonParser = bodyParser.json();
 const { Data, Days, TimeEntries, Category } = require('./models');
 
 router.get('/', (req, res) => {
-    Days
-    .find()
-    .then(data => res.json(data))
+    Data
+        .find()
+        .then(data => res.json(data))
 });
 
 router.post('/', jsonParser, (req, res) => {
-    const requiredFields = ['title', 'startTime', 'endTime', 'category', 'day']
+    const requiredFields = ['title', 'startTime', 'endTime', 'category', 'days']
     for (let i = 0; i < requiredFields.length; i++) {
         const field = requiredFields[i];
         if (!(field in req.body)) {
@@ -25,13 +25,26 @@ router.post('/', jsonParser, (req, res) => {
             return res.status(400).send(message)
         }
     }
-    const timeEntries = TimeEntries.create({
+    Data.create({
         title: req.body.title,
         startTime: req.body.startTime,
         endTime: req.body.endTime,
-        category: req.body.category
+        category: req.body.category,
+        days: req.body.day
+    })
+    .then(day => res.status(201).json({
+        id: day.id,
+        title: day.title,
+        startTime: day.startTime,
+        endTime: day.endTime,
+        category: day.category,
+        days: day.day
+    }))
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({error: 'Something went wrong'});
     });
-    res.status(201).json(timeEntries)
+
 });
 
 module.exports = { router };

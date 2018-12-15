@@ -5,8 +5,11 @@ mongoose.Promise = global.Promise
 
 
 const dataSchema = new mongoose.Schema({
-  user: {type:mongoose.Schema.Types.ObjectId, ref:'User'},
-  data: {type:mongoose.Schema.Types.ObjectId, ref:'Days'},
+  title: {type:String, required:true},
+  startTime: {type:String, required:true},
+  endTime: {type:String, required:true},
+  category: {type:String, required:true},
+  day: {type:String}
 });
 
 const daySchema = new mongoose.Schema({
