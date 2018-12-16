@@ -3,35 +3,25 @@
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise
 
-
-const dataSchema = new mongoose.Schema({
-  title: {type:String, required:true},
-  startTime: {type:String, required:true},
-  endTime: {type:String, required:true},
-  category: {type:String, required:true},
-  day: {type:String}
+const timeEntrySchema = new mongoose.Schema({
+  title: { type: String, required: true },
+  startTime: { type: String, required: true },
+  endTime: { type: String, required: true },
+  category: { type: String, required: true }
 });
 
 const daySchema = new mongoose.Schema({
-  day: {type:String},
-  entries: {type:mongoose.Schema.Types.ObjectId, ref:'TimeEntries'},
-});
+  day: { type: String, required: true },
+  entries: [timeEntrySchema]
+})
 
-const timeEntrySchema = new mongoose.Schema({
-  title: {type:String, required:true},
-  startTime: {type:String, required:true},
-  endTime: {type:String, required:true},
-  category: {type:String, required:true},
-});
+const scheduleSchema = new mongoose.Schema({
+  user: { type: String, required: true },
+  data: [daySchema]
+})
 
-const categorySchema = new mongoose.Schema({
-  name: {type:String, required:true},
-  rank: {type:Number, required:true}
-});
-
-const Data = mongoose.model('Data', dataSchema);
-const Days = mongoose.model('Days', daySchema);
 const TimeEntries = mongoose.model('TimeEntry', timeEntrySchema);
-const Category = mongoose.model('Category', categorySchema);
+const Days = mongoose.model('Days', daySchema);
+const Schedule = mongoose.model('Schedule', scheduleSchema)
 
-module.exports = {Data, Days, TimeEntries, Category};
+module.exports = { TimeEntries, Days, Schedule };

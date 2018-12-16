@@ -7,10 +7,10 @@ const bodyParser = require('body-parser');
 const jsonParser = bodyParser.json();
 
 
-const { Data, Days, TimeEntries, Category } = require('./models');
+const { TimeEntries, Days, Schedule } = require('./models');
 
 router.get('/', (req, res) => {
-    Data
+    TimeEntries
         .find()
         .then(data => res.json(data))
 });
@@ -25,7 +25,8 @@ router.post('/', jsonParser, (req, res) => {
             return res.status(400).send(message)
         }
     }
-    Data.create({
+    console.log(TimeEntries.find())
+    TimeEntries.create({
         title: req.body.title,
         startTime: req.body.startTime,
         endTime: req.body.endTime,
@@ -46,5 +47,15 @@ router.post('/', jsonParser, (req, res) => {
     });
 
 });
+
+router.delete('/delete/:id', (req, res) => {
+    TimeEntries
+    .findByIdAndDelete(req.params.id)
+    .then(entry => res.status(204).end())
+    .catch(err => {
+        console.error(err);
+        res.status(500).json({error:"Internal server error"});
+    });
+})
 
 module.exports = { router };
