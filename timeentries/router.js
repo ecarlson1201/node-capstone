@@ -1,6 +1,7 @@
 'use strict';
 
 const express = require('express');
+const passport = require('passport');
 const router = express.Router();
 
 const bodyParser = require('body-parser');
@@ -8,8 +9,16 @@ const jsonParser = bodyParser.json();
 
 
 const { TimeEntries, Days, Schedule } = require('./models');
+const { router: authRouter } = require('../auth/router');
+const { localStrategy, jwtStrategy } = require('../auth/strategies')
+
+passport.use(localStrategy);
+passport.use(jwtStrategy);
+
+const jwtAuth = passport.authenticate('jwt', { session: false });
 
 router.get('/', (req, res) => {
+    console.log(req.query)
     TimeEntries
         .find()
         .then(data => res.json(data))

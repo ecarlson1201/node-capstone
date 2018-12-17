@@ -1,5 +1,6 @@
 function getDays(dataObj) {
     $('.js-day').html('');
+    $('#js-user').html('');
     $('#js-user').append(`Welcome ${dataObj[0].user}`);
     dataObj[0].data.forEach(function (result) {
         getTimeEntries(result);
@@ -16,11 +17,11 @@ function renderResult(entryObj) {
     return `
         <li class="time-entry">
         ${entryObj.title} ${entryObj.startTime} - ${entryObj.endTime}
-        <input type="checkbox" class="js-checkbox checked">
+        <input type="checkbox" class="js-checkbox hidden">
         </li><br>
     `;
 };
 
-$(function () {
-    getEntriesFromApi(getDays);
-});
+/*$(function () {
+    getEntriesFromApi({"user": `"${USER_ID}"`}, getDays);
+});*/

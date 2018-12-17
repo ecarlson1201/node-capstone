@@ -15,5 +15,19 @@ const DAYSELECT = $('.js-day-select');
 const CANCEL_EDIT = $('#cancel-edit-schedule');
 const EDIT_BUTTONS = $('.js-edit-buttons');
 const TIME_ENTRY = $('.time-entry');
+const SCHEDULE = $('.js-schedule')
 
 const LOGIN = $('.js-login');
+const LOGIN_BUTTON = $('#js-login-button');
+const SIGNUP_BUTTON = $('#js-signup-button');
+const SIGNUP_FORM = $('#js-signup-form');
+const LOGIN_FORM = $('#js-login-form');
+const LOGIN_CANCEL = $('#js-login-cancel');
+
+const SITE_URL = 'http://localhost:8080';
+
+let SESSION_TOKEN = null;
+let USER_ID = null;
+let USER_QUERY = function (user) {
+    return "user: " + user
+}

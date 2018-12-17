@@ -1,13 +1,13 @@
 function displayAddEntry() {
-    ADD.removeClass('checked');
+    ADD.removeClass('hidden');
     daySelect();
     addEntrySubmit();
     cancelEditSchedule();
 };
 
 function cancelAddEntry() {
-    ADD.addClass('checked');
-    DAYSELECT.attr('checked', false);
+    ADD.addClass('hidden');
+    DAYSELECT.attr('hidden', false);
 };
 
 function addEntrySubmit() {
@@ -47,8 +47,8 @@ function daySelectAll() {
 };
 
 function displayEditSchedule() {
-    $('.js-checkbox').removeClass('checked');
-    EDIT_BUTTONS.removeClass('checked');
+    $('.js-checkbox').removeClass('hidden');
+    EDIT_BUTTONS.removeClass('hidden');
     cancelAddEntry();
 };
 
@@ -57,13 +57,13 @@ function clearSchedule() {
 };
 
 function cancelEditSchedule() {
-    EDIT_BUTTONS.addClass('checked');
+    EDIT_BUTTONS.addClass('hidden');
     $('.js-checkbox').prop('checked', false);
-    $('.js-checkbox').addClass('checked');
+    $('.js-checkbox').addClass('hidden');
 };
 
 function cancelUpdateEntry() {
-    UPDATE.addClass('checked');
+    UPDATE.addClass('hidden');
 };
 
 function timeConversion (time) {

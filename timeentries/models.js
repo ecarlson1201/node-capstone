@@ -13,12 +13,12 @@ const timeEntrySchema = new mongoose.Schema({
 const daySchema = new mongoose.Schema({
   day: { type: String, required: true },
   entries: [timeEntrySchema]
-})
+});
 
 const scheduleSchema = new mongoose.Schema({
   user: { type: String, required: true },
   data: [daySchema]
-})
+});
 
 const TimeEntries = mongoose.model('TimeEntry', timeEntrySchema);
 const Days = mongoose.model('Days', daySchema);
