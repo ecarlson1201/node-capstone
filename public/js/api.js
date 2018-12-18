@@ -1,8 +1,7 @@
-function getEntriesFromApi(data, callback) {
+function getEntriesFromApi(callback) {
     $.ajax({
         type: "GET",
-        url: SITE_URL + '/api/time-entries',
-        data: data,
+        url: SITE_URL + `/api/schedules/${USER_ID}`,
         success: callback,
         dataType: "json",
         contentType: "application/json"
@@ -15,9 +14,10 @@ function authLogin(data) {
         url: SITE_URL + '/api/auth/login',
         data: data,
         success: function (data) {
-            SESSION_TOKEN = data
-            USER_ID = $('#js-user-login').val()
-            getEntriesFromApi(USER_QUERY(USER_ID), getDays);
+            sessionStorage.setItem('token', data);
+            USER_ID = $('#js-user-login').val();
+            getEntriesFromApi(getDays);
+            
             SCHEDULE.removeClass('hidden');
             LOGIN.addClass('hidden');
             $('nav').removeClass('hidden');
@@ -40,19 +40,5 @@ function signUpUser(data) {
         },
         dataType: "json",
         contentType: "application/json"
-    });
-};
-
-function deleteUser(data) {
-    $.ajax({
-        type: "DELETE",
-        url: SITE_URL + "api/users/delete/:id",
-        data: data,
-        success: function () {
-            alert("Success! User deleted.");
-            handleCancelLogin();
-        },
-        dataType: "json",
-        contentType: 'application/json'
     });
 };

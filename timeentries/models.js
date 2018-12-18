@@ -20,8 +20,8 @@ const scheduleSchema = new mongoose.Schema({
   data: [daySchema]
 });
 
-const TimeEntries = mongoose.model('TimeEntry', timeEntrySchema);
-const Days = mongoose.model('Days', daySchema);
+const TimeEntry = mongoose.model('TimeEntry', timeEntrySchema);
+const Day = mongoose.model('Day', daySchema);
 const Schedule = mongoose.model('Schedule', scheduleSchema)
 
-module.exports = { TimeEntries, Days, Schedule };
+module.exports = { TimeEntry, Day, Schedule };

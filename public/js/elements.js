@@ -26,7 +26,7 @@ const LOGIN_CANCEL = $('#js-login-cancel');
 
 const SITE_URL = 'http://localhost:8080';
 
-let SESSION_TOKEN = null;
+let SESSION_TOKEN = sessionStorage.getItem("token");
 let USER_ID = null;
 let USER_QUERY = function (user) {
     return "user: " + user

@@ -34,7 +34,7 @@ app.use(function (req, res, next) {
 passport.use(localStrategy);
 passport.use(jwtStrategy);
 
-app.use('/api/time-entries', timeEntriesRouter);
+app.use('/api/schedules', timeEntriesRouter);
 app.use('/api/users/', userRouter);
 app.use('/api/auth/', authRouter);
 app.use(express.static('public'));
