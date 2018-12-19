@@ -1,16 +1,20 @@
 function getDays(dataObj) {
     $('.js-day').html('');
     $('#js-user').html('');
-    $('#js-user').append(`Welcome ${dataObj[0].user}`);
-    dataObj[0].data.forEach(function (result) {
-        getTimeEntries(result);
-    });
+    let data = dataObj[0].data
+    
+    for (let day in data) {
+        if (day !== "_id") {
+            DAY = day
+            getTimeEntries(data[day]);
+        };
+    };
 };
 
-function getTimeEntries(dayObj) {
-    dayObj.entries.forEach(function (e) {
-        $(`#${dayObj.day}`).append(`${renderResult(e)}`)
-    });  
+function getTimeEntries(dayArray) {
+    dayArray.forEach(function (e) {
+        $(`#${DAY}`).append(`${renderResult(e)}`)
+    });
 };
 
 function renderResult(entryObj) {

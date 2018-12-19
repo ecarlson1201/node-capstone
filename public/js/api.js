@@ -8,14 +8,27 @@ function getEntriesFromApi(callback) {
     });
 };
 
+function postEntriesToApi(data) {
+    $.ajax({
+        type: "POST",
+        url: SITE_URL + `/api/schedules/${USER_ID}`,
+        data: data,
+        success: function(){
+            getEntriesFromApi(getDays)
+        },
+        dataType: "json",
+        contentType: "application/json"
+    });
+};
+
 function authLogin(data) {
     $.ajax({
         type: "POST",
         url: SITE_URL + '/api/auth/login',
         data: data,
         success: function (data) {
-            sessionStorage.setItem('token', data);
-            USER_ID = $('#js-user-login').val();
+            sessionStorage.setItem('authToken', data.authToken);
+            sessionStorage.setItem('userId', data.userId)
             getEntriesFromApi(getDays);
             
             SCHEDULE.removeClass('hidden');

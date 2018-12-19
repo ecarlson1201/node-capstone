@@ -3,21 +3,26 @@
 const mongoose = require("mongoose");
 mongoose.Promise = global.Promise
 
-const timeEntrySchema = new mongoose.Schema({
+const timeEntrySchema = mongoose.Schema({
   title: { type: String, required: true },
   startTime: { type: String, required: true },
   endTime: { type: String, required: true },
   category: { type: String, required: true }
 });
 
-const daySchema = new mongoose.Schema({
-  day: { type: String, required: true },
-  entries: [timeEntrySchema]
+const daySchema = mongoose.Schema({
+  Monday: [{timeEntrySchema}],
+  Tuesday:[timeEntrySchema],
+  Wednesday:[timeEntrySchema],
+  Thursday:[timeEntrySchema],
+  Friday:[timeEntrySchema],
+  Saturday:[timeEntrySchema],
+  Sunday:[timeEntrySchema]
 });
 
-const scheduleSchema = new mongoose.Schema({
-  user: { type: String, required: true },
-  data: [daySchema]
+const scheduleSchema = mongoose.Schema({
+  user: String,
+  data: daySchema
 });
 
 const TimeEntry = mongoose.model('TimeEntry', timeEntrySchema);

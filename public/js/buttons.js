@@ -13,37 +13,36 @@ function cancelAddEntry() {
 function addEntrySubmit() {
     ADD_FORM.submit(function (event) {
         event.preventDefault();
+        let dayArray = []
+
         $.each($("input[name='day']:checked"), function () {
-            let that = $(this).val()
-            MOCK_TIME_ENTRIES.data.forEach(function(dayObj){
-                if(dayObj.day === that){
-                    dayObj.entries.push(newEntry());
-                };
-            });
-        });
-        getDays(MOCK_TIME_ENTRIES);
+                let that = $(this).val()
+                dayArray.push(that)
+        })
+        postEntriesToApi(JSON.stringify(newEntry(dayArray)));
         cancelAddEntry();
     });
 };
 
-function newEntry() {
+function newEntry(days) {
     return {
         "title": ADD_TITLE.val(),
         "startTime": timeConversion(ADD_START.val()),
         "endTime": timeConversion(ADD_END.val()),
+        "category": ADD_CATEGORY.val(),
+        "day": days
     };
 };
 
 function daySelect() {
     DAYSELECT.click(function () {
-        $(this).attr('checked', function (val) {
-            return !val;
+        $(this).prop('checked', function (val) {
         });
     });
 };
 
 function daySelectAll() {
-    DAYSELECT.attr('checked', true);
+    DAYSELECT.prop('checked', true);
 };
 
 function displayEditSchedule() {
@@ -66,13 +65,12 @@ function cancelUpdateEntry() {
     UPDATE.addClass('hidden');
 };
 
-function timeConversion (time) {
+function timeConversion(time) {
     var ts = time;
     var H = +ts.substr(0, 2);
     var h = (H % 12) || 12;
-    h = (h < 10)?("0"+h):h;
+    h = (h < 10) ? ("0" + h) : h;
     var ampm = H < 12 ? " AM" : " PM";
     ts = h + ts.substr(2, 3) + ampm;
     return ts;
-  };
-  
+};
