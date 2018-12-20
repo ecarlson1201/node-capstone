@@ -20,7 +20,7 @@ const jwtAuth = passport.authenticate('jwt', { session: false });
 router.get('/:userId', (req, res) => {
     const user = req.params.userId;
     Schedule
-        .find({ user: user })
+        .findOne({ user: user })
         .then(session => res.json(session))
         .catch(err => {
             console.error(err);
@@ -79,50 +79,53 @@ router.put('/:userId', jsonParser, (req, res) => {
             updatedPost[field] = req.body[field]
         }
     });
-    
+    let updatedSchedule;
+    let match;
+
     TimeEntry
-    .findOneAndUpdate(req.params.id, { $set: updatedPost }, { new: true })
-    .then(() => {
-        return Schedule.findOne({ user: user })
-    })
-    .then((schedule) => {
-        for (let i = 0; i < week.length; i++) {
-            return schedule.data[week[[i]]]
-        }
-    })
-    .then((day) => {
-        let match;
-        day.forEach(function (entry) {
-            if (entry.id === req.body._id) {
-                match = entry;
-            };
+        .findOneAndUpdate({ _id: req.body._id }, { $set: updatedPost }, { new: true })
+        .then(() => {
+            return Schedule.findOne({ user: user })
         })
-        return match
-    })
-    .then((oldPost) => {
-    })
-    
-    .catch(err => res.status(500).json({ message: err }))
+        .then((schedule) => {
+            updatedSchedule = schedule
+            for (let i = 0; i < week.length; i++) {
+                return schedule.data[week[[i]]]
+            }
+        })
+        .then((day) => {
+            day.forEach(function (entry) {
+                if (entry._id === req.body._id) {
+                    console.log("found it")
+                    entry = updatedPost;
+                };
+            })
+            match = updatedPost
+
+            return updatedSchedule.save(function () { })
+        })
+        .then(() => { res.status(200).json(match) })
+        .catch(err => res.status(500).json({ message: "Something went terribly wrong" }))
 })
 
 router.delete('/:userId', jsonParser, (req, res) => {
     let user = req.params.userId;
     let toBeDeleted = req.body
     let week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-    
+
     toBeDeleted.forEach(function (index) {
         //        TimeEntry
         //            .findByIdAndRemove(id, () => { res.status(204).end() })
         //            .catch(err => res.status(500).json({ message: err }))
-        
+
         Schedule
-        .findOne({ user: user })
-        .then((schedule) => {
-            for (let i = 0; i < week.length; i++) {
-                return schedule.data[week[[i]]]
-            }
-        })
-        .then((day) => {
+            .findOne({ user: user })
+            .then((schedule) => {
+                for (let i = 0; i < week.length; i++) {
+                    return schedule.data[week[[i]]]
+                }
+            })
+            .then((day) => {
                 let match;
                 day.forEach(function (entry) {
                     if (entry.id === index) {
@@ -135,7 +138,7 @@ router.delete('/:userId', jsonParser, (req, res) => {
                 console.log(oldPost)
             })
             .catch(err => res.status(500).json({ message: err }))
-        })
+    })
 });
 
 module.exports = { router };
