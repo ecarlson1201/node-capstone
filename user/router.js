@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-
+const {Schedule, Day, TimeEntry} = require('../timeentries/models')
 const { User } = require('./models');
 const { router: authRouter } = require('../auth/router');
 const { localStrategy, jwtStrategy } = require('../auth/strategies')

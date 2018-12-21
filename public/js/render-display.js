@@ -1,7 +1,7 @@
 function getDays(dataObj) {
     $('.js-day').html('');
     $('#js-user').html('');
-    let data = dataObj[0].data
+    let data = dataObj.data
     
     for (let day in data) {
         if (day !== "_id") {

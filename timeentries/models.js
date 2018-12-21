@@ -11,7 +11,7 @@ const timeEntrySchema = mongoose.Schema({
 });
 
 const daySchema = mongoose.Schema({
-  Monday: [{timeEntrySchema}],
+  Monday: [timeEntrySchema],
   Tuesday:[timeEntrySchema],
   Wednesday:[timeEntrySchema],
   Thursday:[timeEntrySchema],

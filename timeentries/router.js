@@ -73,72 +73,68 @@ router.put('/:userId', jsonParser, (req, res) => {
     let user = req.params.userId;
     const updatedPost = {};
     const updateableFields = ['title', 'startTime', 'endTime', 'category']
-    let week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
     updateableFields.forEach(field => {
         if (field in req.body) {
             updatedPost[field] = req.body[field]
         }
     });
-    let updatedSchedule;
-    let match;
+    let updated;
 
     TimeEntry
         .findOneAndUpdate({ _id: req.body._id }, { $set: updatedPost }, { new: true })
-        .then(() => {
-            return Schedule.findOne({ user: user })
+        .then((timeEntry) => {
+            Schedule
+                .findOne({ user: user })
+                .then(schedule => {
+                    let newScheduleData = Object.keys(schedule.data.toJSON()).slice(1).reduce((acc, dayKey) => {
+                        acc[dayKey].forEach((entry, index) => {
+                            if (entry.id === req.body._id) {
+                                acc[dayKey][index] = timeEntry;
+                                updated = timeEntry;
+                            };
+                        });
+                        return acc;
+                    }, schedule.data)
+                    Schedule.findByIdAndUpdate(schedule.id, { data: newScheduleData })
+                        .then(response => {
+                            res.status(200).json(updated)
+                        });
+                })
+                .catch(err => res.status(500).json({ message: "Something went terribly wrong updating schedules" }))
         })
-        .then((schedule) => {
-            updatedSchedule = schedule
-            for (let i = 0; i < week.length; i++) {
-                return schedule.data[week[[i]]]
-            }
-        })
-        .then((day) => {
-            day.forEach(function (entry) {
-                if (entry._id === req.body._id) {
-                    console.log("found it")
-                    entry = updatedPost;
-                };
-            })
-            match = updatedPost
-
-            return updatedSchedule.save(function () { })
-        })
-        .then(() => { res.status(200).json(match) })
-        .catch(err => res.status(500).json({ message: "Something went terribly wrong" }))
+        .catch(err => res.status(500).json({ message: "Something went terribly wrong updating timeentries" }))
 })
 
 router.delete('/:userId', jsonParser, (req, res) => {
     let user = req.params.userId;
-    let toBeDeleted = req.body
-    let week = ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"]
-
-    toBeDeleted.forEach(function (index) {
-        //        TimeEntry
-        //            .findByIdAndRemove(id, () => { res.status(204).end() })
-        //            .catch(err => res.status(500).json({ message: err }))
-
-        Schedule
-            .findOne({ user: user })
-            .then((schedule) => {
-                for (let i = 0; i < week.length; i++) {
-                    return schedule.data[week[[i]]]
-                }
-            })
-            .then((day) => {
-                let match;
-                day.forEach(function (entry) {
-                    if (entry.id === index) {
-                        match = entry;
-                    };
+    let toBeDeleted = Object.values(req.body);
+    let deleted = [];
+    TimeEntry
+        .remove({ _id: { $in: toBeDeleted }, }, () => { res.status(204).end() })
+        .then(entry => {
+            Schedule
+                .findOne({ user: user })
+                .then((schedule) => {
+                    let newDeleteData = Object.keys(schedule.data.toJSON()).slice(1).reduce((acc, dayKey) => {
+                        schedule.data[dayKey].reduce((newAcc, dataEntry, index) => {
+                            toBeDeleted.forEach((event) => {
+                                if (dataEntry.id === event) {
+                                    newAcc.splice(index)
+                                    deleted.push(dataEntry)
+                                };
+                            });
+                            return newAcc
+                        }, schedule.data[dayKey])
+                        return acc
+                    }, schedule.data)
+                    Schedule.findByIdAndUpdate(schedule.id, { data: newDeleteData })
+                        .then(response => {
+                            res.status(204).json(deleted);
+                        })
+                        .catch(err => res.status(500).json({ message: "Deletion from schedule successful" }))
                 })
-                return match
-            })
-            .deleteOne((oldPost) => {
-                console.log(oldPost)
-            })
-            .catch(err => res.status(500).json({ message: err }))
-    })
+        })
+        .catch(err => res.status(500).json({ message: "Delection from timeentries successful" }))
 });
 
 module.exports = { router };
