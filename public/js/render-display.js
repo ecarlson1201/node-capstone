@@ -14,17 +14,23 @@ function getDays(dataObj) {
 };
 
 function handleTimeDisplay(dayArray) {
-    dayArray.forEach(function (e) {
-        handleTimeCalc(e);
+    dayArray.forEach(function (event) {
+        handleTimeCalc(event);
         $(`#js-time-${DAY}`).text(`${convertMinutesToHrMin(calcNonProdTime(PRODUCTIVE_TIME[DAY]))}`);
     });
 };
 
-function handleTimeCalc(entryObj){
+function handleTimeCalc(entryObj) {
     if (entryObj.category !== "leisure") {
         const totalStartMin = convertTotalMinutes(convertTime12to24(entryObj.startTime));
         const totalEndMin = convertTotalMinutes(convertTime12to24(entryObj.endTime));
-        PRODUCTIVE_TIME[`${DAY}`] += (totalEndMin - totalStartMin);
+
+        if (totalEndMin - totalStartMin < 0) {
+            PRODUCTIVE_TIME[`${DAY}`] += (1440 + (totalEndMin - totalStartMin));
+        }
+        else {
+            PRODUCTIVE_TIME[`${DAY}`] += (totalEndMin - totalStartMin);
+        };
     };
 };
 
@@ -36,7 +42,6 @@ function getTimeEntries(dayArray) {
 
 function renderResult(entryObj) {
     return `
-
     <li class="js-time-entry" id=${entryObj._id} >
     <button class="js-update-entry-button hidden">Edit</button>
     ${entryObj.title} ${entryObj.startTime} - ${entryObj.endTime}

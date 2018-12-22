@@ -10,7 +10,6 @@ function cancelAddEntry() {
     ADD_TITLE.val('');
     ADD_START.val('');
     ADD_END.val('');
-    ADD_CATEGORY.val('');
     $.each($("input[name='day']"), function () {
         $(this).prop('checked', false);
     });
