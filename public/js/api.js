@@ -14,6 +14,32 @@ function postEntriesToApi(data) {
         url: SITE_URL + `/api/schedules/${USER_ID}`,
         data: data,
         success: function(){
+            getEntriesFromApi(getDays);
+        },
+        dataType: "json",
+        contentType: "application/json"
+    });
+};
+
+function deleteEntriesApi(data) {
+    $.ajax({
+        type: "DELETE",
+        url: SITE_URL + `/api/schedules/${USER_ID}`,
+        data: data,
+        success: function(){
+            getEntriesFromApi(getDays)
+        },
+        dataType: "json",
+        contentType: "application/json"
+    });
+};
+
+function putEntriesApi(data) {
+    $.ajax({
+        type: "PUT",
+        url: SITE_URL + `/api/schedules/${USER_ID}`,
+        data: data,
+        success: function(){
             getEntriesFromApi(getDays)
         },
         dataType: "json",

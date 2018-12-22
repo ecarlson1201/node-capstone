@@ -107,7 +107,7 @@ router.put('/:userId', jsonParser, (req, res) => {
 
 router.delete('/:userId', jsonParser, (req, res) => {
     let user = req.params.userId;
-    let toBeDeleted = Object.values(req.body);
+    let toBeDeleted = req.body;
     let deleted = [];
     TimeEntry
         .remove({ _id: { $in: toBeDeleted }, }, () => { res.status(204).end() })

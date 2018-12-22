@@ -37,10 +37,6 @@ function handleCancelLogin() {
 
 };
 
-function handleDeleteUser() {
-
-};
-
 $.fn.serializeObject = function () {
     const jsonObj = {};
     const input = this.serializeArray();

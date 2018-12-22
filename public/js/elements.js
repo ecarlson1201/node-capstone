@@ -8,13 +8,17 @@ const ADD_FORM = $('#js-add-form');
 const ADD_CATEGORY = $(".js-category");
 
 const UPDATE = $(".js-update-entry");
+const UPDATE_TITLE = $(".js-update-title");
+const UPDATE_START = $(".js-update-start");
+const UPDATE_END = $(".js-update-end");
+let UPDATE_ID;
 
 const SAVE = $('#save-button');
 const CLEAR = $('#clear-schedule');
 const DAYSELECT = $('.js-day-select');
 const CANCEL_EDIT = $('#cancel-edit-schedule');
 const EDIT_BUTTONS = $('.js-edit-buttons');
-const TIME_ENTRY = $('.time-entry');
+const TIME_ENTRY = $('.js-time-entry');
 const SCHEDULE = $('.js-schedule')
 
 const LOGIN = $('.js-login');
@@ -28,5 +32,15 @@ const SITE_URL = 'http://localhost:8080';
 
 let SESSION_TOKEN = sessionStorage.getItem("authToken");
 let USER_ID = sessionStorage.getItem('userId');
+
+let PRODUCTIVE_TIME = {
+    Monday: 0,
+    Tuesday: 0,
+    Wednesday: 0,
+    Thursday: 0,
+    Friday: 0,
+    Saturday: 0,
+    Sunday: 0,
+};
 
 let DAY;

@@ -68,9 +68,9 @@
     </div>
 
     <form class="js-update-entry hidden">
-        Title: <input type="text" class="js-update-title"> <br>
-        Start Time: <input type="text" class="js-update-start"> <br>
-        End Time: <input type="text" class="js-update-end"> <br>
+        Title: <input type="text" class="js-update-title" required> <br>
+        Start Time: <input type="time" class="js-update-start" required> <br>
+        End Time: <input type="time" class="js-update-end" required> <br>
         Category:
         <select name="category" class="js-category">
             <option type="radio" value="essential">Essential (Sleeping, Eating, etc.)</option>
@@ -83,31 +83,46 @@
     </form>
 
     <div class="js-edit-buttons hidden">
-        <button id="save-button" onclick="saveSchedule()">Save</button>
+        <button id="save-button" onclick="editFormSubmit()">Save</button>
         <button id="cancel-edit-schedule" onclick="cancelEditSchedule()">Cancel</button>
         <button id="clear-schedule" onclick="clearSchedule()">Clear Schedule</button>
     </div>
 
     <div class="js-schedule hidden">
+        <h2>Schedule</h2>
         <h3>Monday</h3>
+        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Monday"></span></p>
+        <p>Entries:</p>
         <ul class="js-day" id="Monday"></ul>
 
         <h3>Tuesday</h3>
+        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Tuesday"></span></p>
+        <p>Entries:</p>
         <ul class="js-day" id="Tuesday"></ul>
 
         <h3>Wednesday</h3>
+        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Wednesday"></span></p>
+        <p>Entries:</p>
         <ul class="js-day" id="Wednesday"></ul>
 
         <h3>Thursday</h3>
+        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Thursday"></span></p>
+        <p>Entries:</p>
         <ul class="js-day" id="Thursday"></ul>
-
+        
         <h3>Friday</h3>
+        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Friday"></span></p>
+        <p>Entries:</p>
         <ul class="js-day" id="Friday"></ul>
-
+        
         <h3>Saturday</h3>
+        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Saturday"></span></p>
+        <p>Entries:</p>
         <ul class="js-day" id="Saturday"></ul>
-
+        
         <h3>Sunday</h3>
+        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Sunday"></span></p>
+        <p>Entries:</p>
         <ul class="js-day" id="Sunday"></ul>
     </div>
 
@@ -115,7 +130,10 @@
     <script src="./js/login.js"></script>
     <script src="./js/api.js"></script>
     <script src="./js/elements.js"></script>
-    <script src="./js/buttons.js"></script>
+    <script src="./js/buttons/add-buttons.js"></script>
+    <script src="./js/buttons/edit-buttons.js"></script>
+    <script src="./js/buttons/update-buttons.js"></script>
+    <script src="./js/time-calc.js"></script>
     <script src="./js/seed-data.js"></script>
     <script src="./js/render-display.js"></script>
 </body>
