@@ -27,7 +27,7 @@ function deleteEntriesApi(data) {
         url: SITE_URL + `/api/schedules/${USER_ID}`,
         data: data,
         success: function(){
-            getEntriesFromApi(getDays)
+            getEntriesFromApi(getDays);
         },
         dataType: "json",
         contentType: "application/json"

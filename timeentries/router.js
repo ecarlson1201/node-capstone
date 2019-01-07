@@ -115,11 +115,12 @@ router.delete('/:userId', jsonParser, (req, res) => {
             Schedule
                 .findOne({ user: user })
                 .then((schedule) => {
+                    console.log(Object.keys(schedule.data.toJSON()).slice(1))
                     let newDeleteData = Object.keys(schedule.data.toJSON()).slice(1).reduce((acc, dayKey) => {
                         schedule.data[dayKey].reduce((newAcc, dataEntry, index) => {
                             toBeDeleted.forEach((event) => {
                                 if (dataEntry.id === event) {
-                                    newAcc.splice(index)
+                                    newAcc.splice(index, 1)
                                     deleted.push(dataEntry)
                                 };
                             });

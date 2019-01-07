@@ -1,3 +1,41 @@
+body{
+    background-image: url('../assets/ballpen-calendar-close-up-1558691.jpg');
+    background-size: cover;
+    height: 100%;
+    background-attachment: fixed;
+    font-family: 'Quicksand', sans-serif;
+}
+
+.js-login{
+    text-align: center;
+    color: rgb(42, 47, 51);
+    position: absolute;
+    top: 40%;
+    left:50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
+h1{
+    font-size: 300%;
+}
+
+button{
+    border: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color: rgb(184, 192, 196);
+    height: 50px;
+    width: 80px;
+    font-size: medium;
+    border-radius: 4px;
+}
+
+button:hover{
+    background-color: rgb(218, 223, 226);
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
 .hidden
  {
     display: none;

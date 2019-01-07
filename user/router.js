@@ -2,7 +2,7 @@
 const express = require('express');
 const bodyParser = require('body-parser');
 const passport = require('passport');
-const {Schedule, Day, TimeEntry} = require('../timeentries/models')
+const { Schedule, Day, TimeEntry } = require('../timeentries/models')
 const { User } = require('./models');
 const { router: authRouter } = require('../auth/router');
 const { localStrategy, jwtStrategy } = require('../auth/strategies')
@@ -110,6 +110,10 @@ router.post('/', jsonParser, (req, res) => {
         username,
         password: hash,
       });
+    })
+    .then(user => {
+      console.log(user.id)
+      return user;
     })
     .then(user => {
       return res.status(201).json(user.serialize());
