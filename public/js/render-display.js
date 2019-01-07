@@ -1,8 +1,6 @@
 function getDays(dataObj) {
     $('.js-day').html('');
-    $('#js-user').html('');
     let data = dataObj.data
-    console.log(data)
 
     for (let day in data) {
         if (day !== "_id") {
@@ -19,6 +17,15 @@ function handleTimeDisplay(dayArray) {
         handleTimeCalc(event);
         $(`#js-time-${DAY}`).text(`${convertMinutesToHrMin(calcNonProdTime(PRODUCTIVE_TIME[DAY]))}`);
     });
+};
+
+function handleLogout(){
+    $('.js-day').html('');
+    $('.js-user-schedule').addClass('hidden');
+    handleCancelLogin();
+    LOGIN.removeClass('hidden');
+    $('nav').addClass('hidden');
+    sessionStorage.clear();
 };
 
 function handleTimeCalc(entryObj) {
@@ -46,7 +53,7 @@ function renderResult(entryObj) {
     <li class="js-time-entry" id=${entryObj._id} >
     <button class="js-update-entry-button hidden">Edit</button>
     ${entryObj.title} ${entryObj.startTime} - ${entryObj.endTime}
-    <input type="checkbox" name="edit-checkbox" class="js-checkbox hidden">
+    <input type="checkbox" name="edit-checkbox" class="js-checkbox hidden checkbox">
         </li><br>
     `;
 };

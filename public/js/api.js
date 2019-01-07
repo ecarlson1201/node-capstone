@@ -1,7 +1,7 @@
 function getEntriesFromApi(callback) {
     $.ajax({
         type: "GET",
-        url: SITE_URL + `/api/schedules/${USER_ID}`,
+        url: SITE_URL + `/api/schedules/${sessionStorage.getItem('userId')}`,
         success: callback,
         dataType: "json",
         contentType: "application/json"
@@ -11,7 +11,7 @@ function getEntriesFromApi(callback) {
 function postEntriesToApi(data) {
     $.ajax({
         type: "POST",
-        url: SITE_URL + `/api/schedules/${USER_ID}`,
+        url: SITE_URL + `/api/schedules/${sessionStorage.getItem('userId')}`,
         data: data,
         success: function(){
             getEntriesFromApi(getDays);
@@ -24,7 +24,7 @@ function postEntriesToApi(data) {
 function deleteEntriesApi(data) {
     $.ajax({
         type: "DELETE",
-        url: SITE_URL + `/api/schedules/${USER_ID}`,
+        url: SITE_URL + `/api/schedules/${sessionStorage.getItem('userId')}`,
         data: data,
         success: function(){
             getEntriesFromApi(getDays);
@@ -37,7 +37,7 @@ function deleteEntriesApi(data) {
 function putEntriesApi(data) {
     $.ajax({
         type: "PUT",
-        url: SITE_URL + `/api/schedules/${USER_ID}`,
+        url: SITE_URL + `/api/schedules/${sessionStorage.getItem('userId')}`,
         data: data,
         success: function(){
             getEntriesFromApi(getDays)
@@ -60,6 +60,7 @@ function authLogin(data) {
             SCHEDULE.removeClass('hidden');
             LOGIN.addClass('hidden');
             $('nav').removeClass('hidden');
+            $('.js-user-schedule').removeClass('hidden');
 
         },
         dataType: "json",

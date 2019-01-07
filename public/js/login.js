@@ -7,7 +7,7 @@ function handleLogin() {
     LOGIN_FORM.submit(function (event) {
         event.preventDefault();
 
-        const jsonData = LOGIN_FORM.serializeObject()
+        const jsonData = LOGIN_FORM.serializeObject();
         data = JSON.stringify(jsonData);
         authLogin(data)
     });

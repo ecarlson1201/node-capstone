@@ -28,10 +28,9 @@ const SIGNUP_FORM = $('#js-signup-form');
 const LOGIN_FORM = $('#js-login-form');
 const LOGIN_CANCEL = $('#js-login-cancel');
 
-const SITE_URL = 'http://localhost:8080';
+const LOGOUT = $('.js-logout')
 
-let SESSION_TOKEN = sessionStorage.getItem("authToken");
-let USER_ID = sessionStorage.getItem('userId');
+const SITE_URL = 'http://localhost:8080';
 
 let PRODUCTIVE_TIME = {
     Monday: 0,

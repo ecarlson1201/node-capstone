@@ -21,7 +21,7 @@ const daySchema = mongoose.Schema({
 });
 
 const scheduleSchema = mongoose.Schema({
-  user: String,
+  user: mongoose.Schema.Types.ObjectId,
   data: daySchema
 });
 

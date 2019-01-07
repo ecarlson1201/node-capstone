@@ -13,11 +13,10 @@ h1{
 button{
     border: 0;
     font-family: 'Quicksand', sans-serif;
-    background-color: rgb(184, 192, 196);
-    height: 50px;
-    width: 80px;
-    font-size: medium;
+    background-color: rgb(208, 210, 211);
+    height: 35px;
     border-radius: 4px;
+    margin: 5px;
 }
 
 button:hover{
@@ -31,6 +30,11 @@ form{
     font-weight: bold;
 }
 
+input{
+    font-family: 'Quicksand', sans-serif;
+    margin: 5px;
+}
+
 .input-login{
     font-family: 'Quicksand', sans-serif;
     font-size: large;
@@ -42,8 +46,8 @@ form{
 .form-submit{
     border: 0;
     font-family: 'Quicksand', sans-serif;
-    background-color: rgb(184, 192, 196);
-    height: 50px;
+    background-color: rgb(208, 210, 211);
+    height: 35px;
     width: 80px;
     font-size: medium;
     border-radius: 4px;
@@ -63,6 +67,8 @@ form{
     left:50%;
     margin-right: -50%;
     transform: translate(-50%, -50%);
+    background-image: url('../assets/login-background.png');
+    padding: 20px;
 }
 
 .hidden
@@ -72,10 +78,19 @@ form{
 
 .js-schedule{
     text-align: center;
+    background-image: url('../assets/schedule-background.png');
 }
 
 li{
     text-align: left;
+    list-style: none;
+    padding: 10px;
+    background-image: url('../assets/entry-background.png');
+    font-weight: bold;
+}
+
+p{
+    font-weight: bold;
 }
 
 .js-logout{
@@ -88,4 +103,44 @@ li{
 
 #sub-title{
     font-size: 150%;
+}
+
+.js-total-time{
+    color: rgb(161, 20, 20);
+    font-weight: bold;
+    font-size: 125%;
+}
+
+.day-header{
+    background-image: url('../assets/entry-background.png');
+}
+
+.checkbox{
+    height: 18px;
+    width: 18px;
+}
+
+.add-entry-buttons{
+    border: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color: rgb(208, 210, 211);
+    height: 35px;
+    width: 80px;
+    font-size: medium;
+    border-radius: 4px;
+}
+
+.add-entry-buttons:hover{
+    background-color: rgb(218, 223, 226);
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+#js-day-select-all:hover{
+    cursor: pointer;
+}
+
+.days{
+    border: 1px solid black;
+    margin: 5px;
 }

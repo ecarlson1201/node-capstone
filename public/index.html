@@ -12,10 +12,9 @@
 
 <body>
     <nav class="hidden">
-        <h3 id="js-user"></h3>
         <button onclick="displayAddEntry()" id="addButton">Add Entry</button>
         <button onclick="displayEditSchedule()" id="editButton">Edit Schedule</button>
-        <button class="js-logout">Log Out</button>
+        <button onclick="handleLogout()" class="js-logout">Log Out</button>
     </nav>
 
     <div class="js-login">
@@ -40,11 +39,38 @@
         <button class="hidden" id="js-login-cancel" onclick="handleCancelLogin()">Cancel</button>
     </div>
 
-    <div class="js-add-entry hidden">
-        <form id="js-add-form">
-            Title: <input type="text" class="js-add-title" required> <br>
-            Start Time: <input type="time" class="js-add-start" required> <br>
-            End Time: <input type="time" class="js-add-end" required> <br>
+    <div class="js-user-schedule">
+        <div class="js-add-entry hidden">
+            <form id="js-add-form">
+                Title: <input type="text" class="js-add-title" required> <br>
+                Start Time: <input type="time" class="js-add-start" required> <br>
+                End Time: <input type="time" class="js-add-end" required> <br>
+                Category:
+                <select name="category" class="js-category">
+                    <option type="radio" value="essential">Essential (Sleeping, Eating, etc.)</option>
+                    <option type="radio" value="necessary">Necessary (Working, Exercise, etc.)</option>
+                    <option type="radio" value="miscellaneous">Miscellaneous (Chores, Errands, etc.)</option>
+                    <option type="radio" value="leisure">Leisure (Going out, Movies, Video games, ect.)</option>
+                </select>
+                <div> Days: <br>
+                    <input class="js-day-select checkbox" name="day" value="Monday" type="checkbox">Monday <br>
+                    <input class="js-day-select checkbox" name="day" value="Tuesday" type="checkbox">Tuesday <br>
+                    <input class="js-day-select checkbox" name="day" value="Wednesday" type="checkbox">Wednesday <br>
+                    <input class="js-day-select checkbox" name="day" value="Thursday" type="checkbox">Thursday <br>
+                    <input class="js-day-select checkbox" name="day" value="Friday" type="checkbox">Friday <br>
+                    <input class="js-day-select checkbox" name="day" value="Saturday" type="checkbox">Saturday <br>
+                    <input class="js-day-select checkbox" name="day" value="Sunday" type="checkbox">Sunday <br>
+                    <input onclick="daySelectAll()" type="button" id="js-day-select-all" value="Select All">
+                </div>
+                <input type="submit" class="add-entry-buttons" value="Add Entry">
+                <input id="cancel-add-entry" class="add-entry-buttons" type="reset" onclick="cancelAddEntry()" value="Cancel">
+            </form>
+        </div>
+
+        <form class="js-update-entry hidden">
+            Title: <input type="text" class="js-update-title" required> <br>
+            Start Time: <input type="time" class="js-update-start" required> <br>
+            End Time: <input type="time" class="js-update-end" required> <br>
             Category:
             <select name="category" class="js-category">
                 <option type="radio" value="essential">Essential (Sleeping, Eating, etc.)</option>
@@ -52,78 +78,61 @@
                 <option type="radio" value="miscellaneous">Miscellaneous (Chores, Errands, etc.)</option>
                 <option type="radio" value="leisure">Leisure (Going out, Movies, Video games, ect.)</option>
             </select>
-            <div> Days: <br>
-                <input class="js-day-select" name="day" value="Monday" type="checkbox">Monday <br>
-                <input class="js-day-select" name="day" value="Tuesday" type="checkbox">Tuesday <br>
-                <input class="js-day-select" name="day" value="Wednesday" type="checkbox">Wednesday <br>
-                <input class="js-day-select" name="day" value="Thursday" type="checkbox">Thursday <br>
-                <input class="js-day-select" name="day" value="Friday" type="checkbox">Friday <br>
-                <input class="js-day-select" name="day" value="Saturday" type="checkbox">Saturday <br>
-                <input class="js-day-select" name="day" value="Sunday" type="checkbox">Sunday <br>
-                <input onclick="daySelectAll()" type="button" id="js-day-select-all" value="Select All">
-            </div>
-            <input type="submit" value="Add Entry">
-            <input id="cancel-add-entry" type="reset" onclick="cancelAddEntry()" value="Cancel">
+            <input type="submit" value="Update Entry">
+            <input id="cancel-update-entry" type="reset" onclick="cancelUpdateEntry()" value="Cancel">
         </form>
-    </div>
 
-    <form class="js-update-entry hidden">
-        Title: <input type="text" class="js-update-title" required> <br>
-        Start Time: <input type="time" class="js-update-start" required> <br>
-        End Time: <input type="time" class="js-update-end" required> <br>
-        Category:
-        <select name="category" class="js-category">
-            <option type="radio" value="essential">Essential (Sleeping, Eating, etc.)</option>
-            <option type="radio" value="necessary">Necessary (Working, Exercise, etc.)</option>
-            <option type="radio" value="miscellaneous">Miscellaneous (Chores, Errands, etc.)</option>
-            <option type="radio" value="leisure">Leisure (Going out, Movies, Video games, ect.)</option>
-        </select>
-        <input type="submit" value="Update Entry">
-        <input id="cancel-update-entry" type="reset" onclick="cancelUpdateEntry()" value="Cancel">
-    </form>
+        <div class="js-edit-buttons hidden">
+            <button id="save-button" onclick="editFormSubmit()">Save</button>
+            <button id="cancel-edit-schedule" onclick="cancelEditSchedule()">Cancel</button>
+            <button id="clear-schedule" onclick="clearSchedule()">Clear Schedule</button>
+        </div>
 
-    <div class="js-edit-buttons hidden">
-        <button id="save-button" onclick="editFormSubmit()">Save</button>
-        <button id="cancel-edit-schedule" onclick="cancelEditSchedule()">Cancel</button>
-        <button id="clear-schedule" onclick="clearSchedule()">Clear Schedule</button>
-    </div>
+        <div class="js-schedule hidden">
+            <h1>Schedule</h1>
 
-    <div class="js-schedule hidden">
-        <h2>Schedule</h2>
-        <h3>Monday</h3>
-        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Monday"></span></p>
-        <p>Entries:</p>
-        <ul class="js-day" id="Monday"></ul>
+            <div class="days">
+                <h3>Monday</h3>
+                <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Monday"></span></p>
+                <ul class="js-day" id="Monday"></ul>
+            </div>
 
-        <h3>Tuesday</h3>
-        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Tuesday"></span></p>
-        <p>Entries:</p>
-        <ul class="js-day" id="Tuesday"></ul>
+            <div class="days">
+                <h3>Tuesday</h3>
+                <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Tuesday"></span></p>
+                <ul class="js-day" id="Tuesday"></ul>
+            </div>
 
-        <h3>Wednesday</h3>
-        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Wednesday"></span></p>
-        <p>Entries:</p>
-        <ul class="js-day" id="Wednesday"></ul>
+            <div class="days">
+                <h3>Wednesday</h3>
+                <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Wednesday"></span></p>
+                <ul class="js-day" id="Wednesday"></ul>
+            </div>
 
-        <h3>Thursday</h3>
-        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Thursday"></span></p>
-        <p>Entries:</p>
-        <ul class="js-day" id="Thursday"></ul>
-        
-        <h3>Friday</h3>
-        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Friday"></span></p>
-        <p>Entries:</p>
-        <ul class="js-day" id="Friday"></ul>
-        
-        <h3>Saturday</h3>
-        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Saturday"></span></p>
-        <p>Entries:</p>
-        <ul class="js-day" id="Saturday"></ul>
-        
-        <h3>Sunday</h3>
-        <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Sunday"></span></p>
-        <p>Entries:</p>
-        <ul class="js-day" id="Sunday"></ul>
+            <div class="days">
+                <h3>Thursday</h3>
+                <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Thursday"></span></p>
+                <ul class="js-day" id="Thursday"></ul>
+            </div>
+
+            <div class="days">
+                <h3>Friday</h3>
+                <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Friday"></span></p>
+                <ul class="js-day" id="Friday"></ul>
+            </div>
+
+            <div class="days">
+                <h3>Saturday</h3>
+                <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Saturday"></span></p>
+                <ul class="js-day" id="Saturday"></ul>
+            </div>
+
+            <div class="days">
+                <h3>Sunday</h3>
+                <p>Total Non-productive Time: <span class="js-total-time" id="js-time-Sunday"></span></p>
+                <ul class="js-day" id="Sunday"></ul>
+            </div>
+        </div>
     </div>
 
     <script src="https://code.jquery.com/jquery-1.10.2.js"></script>
