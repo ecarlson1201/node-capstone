@@ -10,6 +10,11 @@ h1{
     font-size: 300%;
 }
 
+h3{
+    font-size: 150%;
+    margin: 10px;
+}
+
 button{
     border: 0;
     font-family: 'Quicksand', sans-serif;
@@ -96,8 +101,7 @@ p{
 .js-logout{
     position: -webkit-sticky;
     position: sticky;
-    width: 150px;
-    top: 0;
+    width: 100px;
     float: right;
 }
 
@@ -143,4 +147,8 @@ p{
 .days{
     border: 1px solid black;
     margin: 5px;
+}
+
+.entry-time-display{
+    float: right;
 }

@@ -52,7 +52,7 @@ function renderResult(entryObj) {
     return `
     <li class="js-time-entry" id=${entryObj._id} >
     <button class="js-update-entry-button hidden">Edit</button>
-    ${entryObj.title} ${entryObj.startTime} - ${entryObj.endTime}
+    ${entryObj.title} <span class="entry-time-display">${entryObj.startTime} - ${entryObj.endTime}</span>
     <input type="checkbox" name="edit-checkbox" class="js-checkbox hidden checkbox">
         </li><br>
     `;
