@@ -6,16 +6,6 @@ body{
     font-family: 'Quicksand', sans-serif;
 }
 
-.js-login{
-    text-align: center;
-    color: rgb(42, 47, 51);
-    position: absolute;
-    top: 40%;
-    left:50%;
-    margin-right: -50%;
-    transform: translate(-50%, -50%);
-}
-
 h1{
     font-size: 300%;
 }
@@ -36,7 +26,66 @@ button:hover{
     cursor: pointer;
 }
 
+form{
+    font-size: large;
+    font-weight: bold;
+}
+
+.input-login{
+    font-family: 'Quicksand', sans-serif;
+    font-size: large;
+    height: 30px;
+    width: 150px;
+    border-radius: 4px;
+}
+
+.form-submit{
+    border: 0;
+    font-family: 'Quicksand', sans-serif;
+    background-color: rgb(184, 192, 196);
+    height: 50px;
+    width: 80px;
+    font-size: medium;
+    border-radius: 4px;
+}
+
+.form-submit:hover{
+    background-color: rgb(218, 223, 226);
+    transition-duration: 0.3s;
+    cursor: pointer;
+}
+
+.js-login{
+    text-align: center;
+    color: rgb(42, 47, 51);
+    position: absolute;
+    top: 40%;
+    left:50%;
+    margin-right: -50%;
+    transform: translate(-50%, -50%);
+}
+
 .hidden
- {
+{
     display: none;
+}
+
+.js-schedule{
+    text-align: center;
+}
+
+li{
+    text-align: left;
+}
+
+.js-logout{
+    position: -webkit-sticky;
+    position: sticky;
+    width: 150px;
+    top: 0;
+    float: right;
+}
+
+#sub-title{
+    font-size: 150%;
 }

@@ -20,22 +20,21 @@
 
     <div class="js-login">
         <h1>Welcome to Time Flies!</h1>
-        <h3>Discover where your time is getting away from you!</h3>
+        <h3 id="sub-title">Discover where your time is getting away from you!</h3>
         <button id="js-login-button" onclick="handleLogin()">Login</button>
         <button id="js-signup-button" onclick="handleSignup()">Sign Up</button>
 
 
         <form class="hidden" id="js-signup-form" name="signup">
-            Username: <input type="text" required name="username">
-            Password: <input type="text" required name="password">
-            <input type="submit" value="Create Account">
-            <input type="button" onclick="handleDeleteUser()" value="Delete Account">
+            Username: <input type="text" class="input-login" required name="username">
+            Password: <input type="text" class="input-login" required name="password">
+            <input type="submit" class="form-submit" value="Create">
         </form>
 
         <form class="hidden" id="js-login-form" name="login">
-            Username: <input type="text" required name="username" id="js-user-login">
-            Password: <input type="text" required name="password">
-            <input type="submit" value="Login">
+            Username: <input type="text" class="input-login" required name="username" id="js-user-login">
+            Password: <input type="text" class="input-login" required name="password">
+            <input type="submit" class="form-submit" value="Login">
         </form>
 
         <button class="hidden" id="js-login-cancel" onclick="handleCancelLogin()">Cancel</button>

@@ -17,6 +17,7 @@ passport.use(jwtStrategy);
 const jwtAuth = passport.authenticate('jwt', { session: false });
 
 router.post('/', jsonParser, (req, res) => {
+  let userObj = null;
   const requiredFields = ['username', 'password'];
   const missingField = requiredFields.find(field => !(field in req.body));
 
@@ -112,11 +113,22 @@ router.post('/', jsonParser, (req, res) => {
       });
     })
     .then(user => {
-      console.log(user.id)
-      return user;
+      userObj= user
+      return Schedule.create({
+        user: user.id,
+        data: {
+          Monday: [],
+          Tuesday:[],
+          Wednesday:[],
+          Thursday:[],
+          Friday:[],
+          Saturday:[],
+          Sunday:[]
+        }
+      })
     })
-    .then(user => {
-      return res.status(201).json(user.serialize());
+    .then(schedule => {
+      return res.status(201).json(userObj.serialize());
     })
     .catch(err => {
       if (err.reason === 'ValidationError') {
