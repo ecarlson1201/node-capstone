@@ -4,6 +4,6 @@ deploy:
   provider: heroku
   api_key:
     secure: YSDdThbwOUqDIXw+qNYOD1s6SVDmWqZP5J8F8v+1jUWxpNUpnoU6qyOciWuabr/nT74kAF1nY7Bhl3PSe4d684KMV/JpJwh1w/GFFPPiDuvguqF8Qvz125NTBeIgCluaXBUK7xxBvXDsnTSnAjErlqYa/g1tcTdwXPhBtcHsY5RnH28oHCXHJr2SbYUGFbimP5L6csyZNKvmFHzfLdWMGnSxEv32XwwPmV9RKv1J0cM04GOCCuilCfBue3EUKMHyCb8GFR6QflGH8X0VgPB2Z65nTnLWDFIj7dOsOp42got6aZ0dZE4Uj1YV3CgW6KDQyIvLFUu5O1+oBfLOmREMfB2t1X9ElxYu53/JqVEgRfOyZvKQfbvbFDXRTv1nSVGerjLusc1I8KUX4ArYdBtiOGnFwJJq1vujpWUcX556ZwxMcC5v4xoGeOpRSp+og5xjtyjD2tkJuiLIyDHXJucmuxI/I6ct8qmIVSegJhR72e58p7AcpgWfZs5RPJATgUid/3Gd8W/MrU2jiQDqNY1f1n1R3HVvYLzx84wHMPryT2OIKtYPNVocefysD/bEYyz77a5Y0qawPPcjnO44lK48jGZKCaJutLIT9Jb/dMxVPTGCt2oregE0Wd4jTZtLbMkkN04NUb1Y1g2cMi9xYXGZJE7GAxYfuYIlMntnQRdCl/Q=
-      app: aqueous-forest-46907
+      app: protected-crag-87733
   on:
     repo: ecarlson1201/node-capstone
