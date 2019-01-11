@@ -26,6 +26,7 @@ function handleLogout(){
     handleCancelLogin();
     LOGIN.removeClass('hidden');
     $('nav').addClass('hidden');
+    $('.js-total-time').text('');
     sessionStorage.clear();
 };
 
