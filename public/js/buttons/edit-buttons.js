@@ -30,7 +30,6 @@ function editFormSubmit() {
         console.log(that)
         editEntryId.push(that)
     })
-    console.log(editEntryId)
     deleteEntriesApi(JSON.stringify(editEntryId));
     cancelEditSchedule();
 };

@@ -119,7 +119,7 @@ p{
     background-image: url('../assets/entry-background.png');
 }
 
-.checkbox{
+.js-checkbox{
     height: 18px;
     width: 18px;
 }
