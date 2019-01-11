@@ -102,7 +102,7 @@
                             <option type="radio" value="miscellaneous">Miscellaneous (Chores, Errands, etc.)</option>
                             <option type="radio" value="leisure">Leisure (Going out, Movies, Video games, ect.)</option>
                         </select>
-                        <input type="submit" value="Update Entry">
+                        <input type="submit" id="update-entry" value="Update Entry">
                         <input id="cancel-update-entry" type="reset" onclick="cancelUpdateEntry()" value="Cancel">
                     </form>
 
@@ -113,8 +113,9 @@
                     </div>
                 </div>
 
-                <div class="js-schedule hidden">
+                <div class="js-schedule hidden" aria-live="assertive">
                     <h1>Schedule</h1>
+                    <h3>Hint: Log your schedule as precisely as possible for best results!</h3>
 
                     <div class="col-12"></div>
                     <div class="days">

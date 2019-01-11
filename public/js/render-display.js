@@ -1,5 +1,6 @@
 function getDays(dataObj) {
     $('.js-day').html('');
+    $('.js-total-time').text('');
     let data = dataObj.data
 
     for (let day in data) {
