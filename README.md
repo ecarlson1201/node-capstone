@@ -10,13 +10,13 @@ The following user is available for testing:
 Username: test      Password: test1234
 
 ### Home Page
-! [homepage](/public/assets/home-screen.png)
+! [homepage](https://raw.githubusercontent.com/ecarlson1201/node-capstone/master/public/assets/home-screen.png)
 
 ### Login Screen
-! [loginscreen](/public/assets/login-screen.png)
+! [loginscreen](https://raw.githubusercontent.com/ecarlson1201/node-capstone/master/public/assets/login-screen.png)
 
 ### Schedule Screen
-! [schedulescreen](/public/assets/schedule-screen.png)
+! [schedulescreen](https://raw.githubusercontent.com/ecarlson1201/node-capstone/master/public/assets/schedule-screen.png)
 
 ### Built With
 
