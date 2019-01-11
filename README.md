@@ -10,22 +10,22 @@ The following user is available for testing:
 Username: test      Password: test1234
 
 ### Home Page
-! [homepage](/public/assets/home-screen.png)
+! [homepage](https://raw.githubusercontent.com/ecarlson1201/node-capstone/public/assets/home-screen.png)
 
 ### Login Screen
-! [loginscreen](/public/assets/login-screen.png)
+! [loginscreen](https://raw.githubusercontent.com/ecarlson1201/node-capstone/public/assets/login-screen.png)
 
 ### Schedule Screen
-![schedulescreen](/public/assets/schedule-screen/png)
+! [schedulescreen](https://raw.githubusercontent.com/ecarlson1201/node-capstone/public/assets/schedule-screen.png)
 
-## Built With
+### Built With
 
-*HTML5
-*CSS3
-*JavaScript
-*jQuery
-*Node.js
-*MongoDB
+* HTML5
+* CSS3
+* JavaScript
+* jQuery
+* Node.js
+* MongoDB
 
-## Author
+### Author
 Eric Carlson
