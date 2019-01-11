@@ -37,10 +37,13 @@ passport.use(jwtStrategy);
 app.use('/api/schedules', timeEntriesRouter);
 app.use('/api/users/', userRouter);
 app.use('/api/auth/', authRouter);
-//app.use(express.static('public'));
-app.use(express.static(__dirname + '/app'));
+app.use(express.static('public'));
 
 const jwtAuth = passport.authenticate('jwt', { session: false });
+
+app.get('/', (req, res) => {
+  res.sendFile(__dirname + '/public/index.html')
+});
 
 app.get('/api/protected', jwtAuth, (req, res) => {
   return res.json({
