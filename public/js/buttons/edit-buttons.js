@@ -26,7 +26,7 @@ function editFormSubmit() {
     let editEntryId = [];
 
     $.each($("input[class='js-checkbox']:checked"), function () {
-        let that = $(this).closest('li').attr("id")
+        let that = $(this).closest('li').attr("class")
         console.log(that)
         editEntryId.push(that)
     })

@@ -7,7 +7,7 @@ function handleUpdateClick() {
         UPDATE.removeClass('hidden');
         cancelAddEntry();
         cancelEditSchedule();
-        UPDATE_ID = $(this).closest('li').attr("id");
+        UPDATE_ID = $(this).closest('li').attr("class");
     });
 };
 

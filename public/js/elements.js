@@ -18,7 +18,6 @@ const CLEAR = $('#clear-schedule');
 const DAYSELECT = $('.js-day-select');
 const CANCEL_EDIT = $('#cancel-edit-schedule');
 const EDIT_BUTTONS = $('.js-edit-buttons');
-const TIME_ENTRY = $('.js-time-entry');
 const SCHEDULE = $('.js-schedule')
 
 const LOGIN = $('.js-login');
