@@ -1,6 +1,6 @@
 # Time Flies
 
-Live link: 
+[Live Demo](https://blooming-thicket-82663.herokuapp.com/)
 
 Time Flies is a scheduling app that determines the amount of unproductive time the user has during their day.
 A user can login and add their weekly schedule to the app. The app will then calculate how much time each day is being underutilized.
