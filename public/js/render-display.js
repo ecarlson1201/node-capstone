@@ -22,6 +22,7 @@ function handleTimeDisplay(dayArray) {
 function handleLogout(){
     $('.js-day').html('');
     $('.js-user-schedule').addClass('hidden');
+    $('.js-schedule').addClass('hidden');
     handleCancelLogin();
     LOGIN.removeClass('hidden');
     $('nav').addClass('hidden');

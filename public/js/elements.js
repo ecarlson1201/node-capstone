@@ -30,7 +30,7 @@ const LOGIN_CANCEL = $('#js-login-cancel');
 
 const LOGOUT = $('.js-logout')
 
-const SITE_URL = 'http://localhost:8080';
+const SITE_URL = 'https://blooming-thicket-82663.herokuapp.com';
 
 let PRODUCTIVE_TIME = {
     Monday: 0,
