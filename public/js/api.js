@@ -13,7 +13,7 @@ function postEntriesToApi(data) {
         type: "POST",
         url: SITE_URL + `/api/schedules/${sessionStorage.getItem('userId')}`,
         data: data,
-        success: function(){
+        success: function () {
             getEntriesFromApi(getDays);
         },
         dataType: "json",
@@ -26,7 +26,7 @@ function deleteEntriesApi(data) {
         type: "DELETE",
         url: SITE_URL + `/api/schedules/${sessionStorage.getItem('userId')}`,
         data: data,
-        success: function(){
+        success: function () {
             getEntriesFromApi(getDays);
         },
         dataType: "json",
@@ -39,7 +39,7 @@ function putEntriesApi(data) {
         type: "PUT",
         url: SITE_URL + `/api/schedules/${sessionStorage.getItem('userId')}`,
         data: data,
-        success: function(){
+        success: function () {
             getEntriesFromApi(getDays)
         },
         dataType: "json",
@@ -56,7 +56,7 @@ function authLogin(data) {
             sessionStorage.setItem('authToken', data.authToken);
             sessionStorage.setItem('userId', data.userId)
             getEntriesFromApi(getDays);
-            
+
             SCHEDULE.removeClass('hidden');
             LOGIN.addClass('hidden');
             $('nav').removeClass('hidden');
@@ -77,6 +77,11 @@ function signUpUser(data) {
             alert('Success! User created.')
             SIGNUP_FORM.addClass('hidden');
             LOGIN_FORM.removeClass('hidden');
+        },
+        error: function (obj, string, err){
+            console.log(obj)
+            console.log(string)
+            console.log(err)
         },
         dataType: "json",
         contentType: "application/json"
