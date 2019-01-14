@@ -1,3 +1,4 @@
+//get schedule for logged in user
 function getEntriesFromApi(callback) {
     $.ajax({
         type: "GET",
@@ -8,6 +9,7 @@ function getEntriesFromApi(callback) {
     });
 };
 
+//add time entries for logged in user
 function postEntriesToApi(data) {
     $.ajax({
         type: "POST",
@@ -21,6 +23,7 @@ function postEntriesToApi(data) {
     });
 };
 
+//remove time entries from schedule for logged in user
 function deleteEntriesApi(data) {
     $.ajax({
         type: "DELETE",
@@ -34,6 +37,7 @@ function deleteEntriesApi(data) {
     });
 };
 
+//edits time entries for logged in user
 function putEntriesApi(data) {
     $.ajax({
         type: "PUT",
@@ -47,6 +51,7 @@ function putEntriesApi(data) {
     });
 };
 
+//user login
 function authLogin(data) {
     $.ajax({
         type: "POST",
@@ -71,6 +76,7 @@ function authLogin(data) {
     });
 };
 
+//user signup
 function signUpUser(data) {
     $.ajax({
         type: "POST",

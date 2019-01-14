@@ -1,3 +1,6 @@
+/* handles time coversions from 24hrs down to minutes, calculations of used minutes
+out of whole day, and conversions back to 12hr time*/
+
 function convertTime24to12(time) {
     var ts = time;
     var H = +ts.substr(0, 2);

@@ -1,3 +1,4 @@
+//handles on click display changes and account login
 function handleLogin() {
     LOGIN_FORM.removeClass('hidden');
     LOGIN_CANCEL.removeClass('hidden');
@@ -13,6 +14,7 @@ function handleLogin() {
     });
 };
 
+//handles display changes and submit for account signup
 function handleSignup() {
     LOGIN_BUTTON.addClass('hidden');
     SIGNUP_BUTTON.addClass('hidden');
@@ -28,6 +30,7 @@ function handleSignup() {
     });
 };
 
+//handles display changes for cancel button
 function handleCancelLogin() {
     LOGIN_CANCEL.addClass('hidden');
     LOGIN_BUTTON.removeClass('hidden');
@@ -37,6 +40,7 @@ function handleCancelLogin() {
 
 };
 
+//serializes object into JSON
 $.fn.serializeObject = function () {
     const jsonObj = {};
     const input = this.serializeArray();

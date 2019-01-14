@@ -1,3 +1,4 @@
+// uses data from server response and injects each entry into appropriate day in schedule
 function getDays(dataObj) {
     $('.js-day').html('');
     $('.js-total-time').text('');
@@ -13,6 +14,7 @@ function getDays(dataObj) {
     };
 };
 
+//displays unproductive time for each day
 function handleTimeDisplay(dayArray) {
     dayArray.forEach(function (event) {
         handleTimeCalc(event);
@@ -20,6 +22,7 @@ function handleTimeDisplay(dayArray) {
     });
 };
 
+// handles display changes and clearing storage on logout
 function handleLogout(){
     $('.js-day').html('');
     $('.js-user-schedule').addClass('hidden');
@@ -31,6 +34,7 @@ function handleLogout(){
     sessionStorage.clear();
 };
 
+// handles the calculations for unproductive time
 function handleTimeCalc(entryObj) {
     if (entryObj.category !== "leisure") {
         const totalStartMin = convertTotalMinutes(convertTime12to24(entryObj.startTime));
@@ -45,12 +49,14 @@ function handleTimeCalc(entryObj) {
     };
 };
 
+//displays time entries for each day
 function getTimeEntries(dayArray) {
     dayArray.forEach(function (e) {
         $(`#${DAY}`).append(`${renderResult(e)}`);
     });
 };
 
+//renders results from server response
 function renderResult(entryObj) {
     return `
     <li class=${entryObj._id} >
