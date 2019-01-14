@@ -63,6 +63,9 @@ function authLogin(data) {
             $('.js-user-schedule').removeClass('hidden');
 
         },
+        error: function(){
+            alert('Create an account to begin!')
+        },
         dataType: "json",
         contentType: "application/json"
     });
