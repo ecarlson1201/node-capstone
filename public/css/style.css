@@ -123,11 +123,6 @@ p{
     background-image: url('../assets/entry-background.png');
 }
 
-.js-checkbox{
-    height: 18px;
-    width: 18px;
-}
-
 .add-entry-buttons{
     border: 0;
     font-family: 'Quicksand', sans-serif;
@@ -166,4 +161,8 @@ p{
 
 .entry-time-display{
     float: right;
+}
+
+.js-time-entry-delete{
+    background-color: rgb(208, 210, 211);
 }

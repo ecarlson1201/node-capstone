@@ -1,5 +1,6 @@
 function displayEditSchedule() {
     $('.js-checkbox').removeClass('hidden');
+    $('js-time-entry-delete').removeClass('hidden');
     EDIT_BUTTONS.removeClass('hidden');
     $('.js-update-entry-button').removeClass('hidden');
     cancelAddEntry();
@@ -11,6 +12,7 @@ function cancelEditSchedule() {
     EDIT_BUTTONS.addClass('hidden');
     $('.js-checkbox').prop('checked', false);
     $('.js-checkbox').addClass('hidden');
+    $('js-time-entry-delete').addClass('hidden');
     $('.js-update-entry-button').addClass('hidden');
 };
 
