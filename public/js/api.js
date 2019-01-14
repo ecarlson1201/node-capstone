@@ -78,8 +78,10 @@ function signUpUser(data) {
             SIGNUP_FORM.addClass('hidden');
             LOGIN_FORM.removeClass('hidden');
         },
-        error: function (obj){
-            console.log(obj.responseJSON.message)
+        error: function (obj) {
+            if (obj.responseJSON.code === 422) {
+                alert(obj.responseJSON.message)
+            };
         },
         dataType: "json",
         contentType: "application/json"
