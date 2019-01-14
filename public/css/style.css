@@ -164,5 +164,10 @@ p{
 }
 
 .js-time-entry-delete{
+    font-weight: normal;
+    font-family: 'Quicksand', sans-serif;
     background-color: rgb(208, 210, 211);
+    height: 35px;
+    border-radius: 4px;
+    margin: 5px;
 }
