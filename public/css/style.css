@@ -1,5 +1,5 @@
 body{
-    background-image: url('../assets/ballpen-calendar-close-up-1558691.jpg');
+    background-image: url('../assets/compressed-edited-background.jpg');
     background-size: cover;
     height: 100%;
     background-attachment: fixed;
@@ -171,4 +171,10 @@ p{
     padding: 7px;
     border-radius: 4px;
     margin: 5px;
+}
+
+#js-signup-button, #js-login-button{
+    width: 100px;
+    height: 50px;
+    font-size: large;
 }
